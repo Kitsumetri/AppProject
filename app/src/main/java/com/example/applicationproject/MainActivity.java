@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
             Document doc;
             try {
                 doc = Jsoup.connect("https://google.com/").get();
-                Log.i("LOGGER", doc.title());
+                Log.i("LOGGER123", doc.title());
             } catch (IOException e) {
-                Log.i("LOGGER", "Fuck you");
+                Log.i("LOGGER123", "Fuck you");
                 e.printStackTrace();
             }
             return null;
