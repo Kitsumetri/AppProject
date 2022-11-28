@@ -1,6 +1,8 @@
 package com.example.applicationproject;
 
-import android.os.AsyncTask;
+import static com.example.applicationproject.Parser.obi_wallpapers_count;
+import static com.example.applicationproject.Parser.order_wallpapers_count;
+
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -15,14 +17,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.applicationproject.databinding.ActivityMainBinding;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        Parsing p = new Parsing();
+        Parser p = new Parser();
         p.execute();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -48,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
-
+        Wallpaper[] obi_wallpapers = new Wallpaper[obi_wallpapers_count];
+        Wallpaper[] order_wallpapers = new Wallpaper[order_wallpapers_count];
     }
 
     @Override
@@ -80,26 +77,4 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private class Parsing extends AsyncTask<Void, Void, Void>
-    {
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-        }
-        @Override
-        protected Void doInBackground(Void...voids)
-        {
-            Document doc;
-            try {
-                doc = Jsoup.connect("https://google.com/").get();
-                Log.i("LOGGER123", doc.title());
-            } catch (IOException e) {
-                Log.i("LOGGER123", "Fuck you");
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-    }
 }
