@@ -152,11 +152,11 @@ public class ProductData {
         this.priority = priority;
     }
 
-    public boolean isInStore() {
+    public boolean getIsInStore() {
         return isInStore;
     }
 
-    public void setInStore(boolean inStore) {
+    public void setIsInStore(boolean inStore) {
         isInStore = inStore;
     }
 

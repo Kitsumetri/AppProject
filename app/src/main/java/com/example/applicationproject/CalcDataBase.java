@@ -1,5 +1,6 @@
 package com.example.applicationproject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -39,5 +40,32 @@ public class CalcDataBase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    public boolean addOne(ProductData productData){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_HASH_ID, productData.getHashId());
+        cv.put(COLUMN_NAME, productData.getName());
+        cv.put(COLUMN_DESCRIPTION, productData.getDescription());
+        cv.put(COLUMN_PRICE, productData.getPrice());
+        cv.put(COLUMN_METADATA_2, productData.getMetaData2());
+        cv.put(COLUMN_METADATA_3, productData.getMetaData3());
+        cv.put(COLUMN_ITEM_SOURCE_LINK, productData.getItemSourceLink());
+        cv.put(COLUMN_IMAGE_PATH, productData.getImagePath());
+        cv.put(COLUMN_NUMBER_OF_CALLS, productData.getNumberOfCalls());
+        cv.put(COLUMN_RATING, productData.getRating());
+        cv.put(COLUMN_PRIORITY, productData.getPriority());
+        cv.put(COLUMN_IS_IN_STORE, productData.getIsInStore());
+        cv.put(COLUMN_CATEGORY, productData.getCategory());
+
+        long insert = db.insert(PRODUCTS_DATA, null, cv);
+
+        if (insert == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

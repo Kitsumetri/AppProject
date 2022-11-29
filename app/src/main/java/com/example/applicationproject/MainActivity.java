@@ -3,6 +3,7 @@ package com.example.applicationproject;
 import static com.example.applicationproject.Parser.obi_wallpapers_count;
 import static com.example.applicationproject.Parser.order_wallpapers_count;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -44,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         binding.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
+
         Wallpaper[] obi_wallpapers = new Wallpaper[obi_wallpapers_count];
-        Wallpaper[] order_wallpapers = new Wallpaper[order_wallpapers_count];
+        //Wallpaper[] order_wallpapers = new Wallpaper[order_wallpapers_count];
     }
 
     @Override
