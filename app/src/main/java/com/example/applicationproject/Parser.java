@@ -1,12 +1,10 @@
 package com.example.applicationproject;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -17,7 +15,7 @@ public class Parser extends AsyncTask<Void, Void, Void> {
     static CalcDataBase obi_oboi_prDt_main;
     static String obiOboiHashCode;
     static Document obi_doc;
-    static Elements obi_names, obi_prices, obi_ratings;
+    static Elements obi_names, obi_prices, obi_ratings, obi_image;
 
 
     @Override
@@ -37,7 +35,9 @@ public class Parser extends AsyncTask<Void, Void, Void> {
             obi_names = obi_doc.select("p._1UlGi");
             obi_prices = obi_doc.select("span._3IeOW");
             obi_ratings = obi_doc.getElementsByClass("_1N_Nr");
-            //Elements obi_img = obi_doc.getElementsByAttributeValueContaining("alt", "бои");
+
+            obi_image = obi_doc.getElementsByAttributeValueContaining("src", ".jpg");
+
             //Elements obi_img = obi_doc.getElementsByAttributeValueContaining("src", ".jpg");
             //Elements obi_img = obi_doc.getElementsByClass("_1Z94x");
             /* for (int i = 0; i < obi_names.size(); i++){

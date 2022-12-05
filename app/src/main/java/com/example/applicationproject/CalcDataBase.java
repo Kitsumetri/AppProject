@@ -26,13 +26,14 @@ public class CalcDataBase extends SQLiteOpenHelper {
     public static final String COLUMN_IS_IN_STORE = "ISINSTORE";
     public static final String COLUMN_CATEGORY = "CATEGORY";
 
-    public CalcDataBase(@Nullable Context context) {
+    public CalcDataBase(Context context) {
         super(context, "calculatorBase.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + PRODUCTS_DATA + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_HASH_ID + " STRING, " + COLUMN_NAME + " TEXT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_PRICE + " FLOAT, " + COLUMN_METADATA_2 + " STRING, " + COLUMN_METADATA_3 + " STRING, " + COLUMN_ITEM_SOURCE_LINK + " STRING, " + COLUMN_IMAGE_PATH + " STRING, " + COLUMN_NUMBER_OF_CALLS + " INTEGER, " + COLUMN_RATING + " FLOAT, " + COLUMN_PRIORITY + " INTEGER, " + COLUMN_IS_IN_STORE + " BOOLEAN, " + COLUMN_CATEGORY + " TEXT)";
+        String createTableStatement = "CREATE TABLE " + PRODUCTS_DATA +
+                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_HASH_ID + " STRING, " + COLUMN_NAME + " TEXT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_PRICE + " FLOAT, " + COLUMN_METADATA_2 + " STRING, " + COLUMN_METADATA_3 + " STRING, " + COLUMN_ITEM_SOURCE_LINK + " STRING, " + COLUMN_IMAGE_PATH + " STRING, " + COLUMN_NUMBER_OF_CALLS + " INTEGER, " + COLUMN_RATING + " FLOAT, " + COLUMN_PRIORITY + " INTEGER, " + COLUMN_IS_IN_STORE + " BOOLEAN, " + COLUMN_CATEGORY + " TEXT)";
 
         db.execSQL(createTableStatement);
     }
