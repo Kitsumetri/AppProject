@@ -4,6 +4,7 @@ import static com.example.applicationproject.Parser.obiOboiHashCode;
 import static com.example.applicationproject.Parser.obi_doc;
 import static com.example.applicationproject.Parser.obi_isSuccesfullyAddedToDataBase;
 import static com.example.applicationproject.Parser.obi_names;
+import static com.example.applicationproject.Parser.obi_oboi_count;
 import static com.example.applicationproject.Parser.obi_oboi_prDt_main;
 import static com.example.applicationproject.Parser.obi_prices;
 import static com.example.applicationproject.Parser.obi_ratings;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         ProductData obi_oboi_prDt_help;
         obi_oboi_prDt_main = new CalcDataBase(MainActivity.this);
-        for (int i = 0; i < obi_names.size(); i++) {
+        for (int i = 0; i < obi_oboi_count; i++) {
             try{
                 obi_oboi_prDt_help = new ProductData(i + 1, obiOboiHashCode, obi_names.get(i).text(), "Description", Float.valueOf(obi_prices.get(i).text().replaceAll(" ", "").replace("₽", "").replace(",", ".")), "Metadata2", "Metadata3", "ImageLink", "ImagePath", 1, Float.valueOf(obi_ratings.get(i).text().replace("(", "").replace(")", "")), 1, true, "Oboi");
                 obi_isSuccesfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
