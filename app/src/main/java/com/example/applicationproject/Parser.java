@@ -1,17 +1,8 @@
 package com.example.applicationproject;
 
-import static com.example.applicationproject.Parser.obiOboiHashCode;
-import static com.example.applicationproject.Parser.obi_isSuccesfullyAddedToDataBase;
-import static com.example.applicationproject.Parser.obi_names;
-import static com.example.applicationproject.Parser.obi_oboi_count;
-import static com.example.applicationproject.Parser.obi_oboi_prDt_main;
-import static com.example.applicationproject.Parser.obi_prices;
-import static com.example.applicationproject.Parser.obi_ratings;
-
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -27,7 +18,6 @@ public class Parser extends AsyncTask<Void, Void, Void> {
     static String obiOboiHashCode;
     static Document obi_doc;
     static Elements obi_names, obi_prices, obi_ratings;
-    static int obi_oboi_count;
 
 
     @Override
@@ -42,27 +32,24 @@ public class Parser extends AsyncTask<Void, Void, Void> {
         //Document maxidom_doc = null;
 
         try {
-            //ProductData obi_oboi_prDt_help;
-            //obi_oboi_prDt_main = new CalcDataBase(null);
             obi_doc = Jsoup.connect("https://clck.ru/32eAhB").get();
             Log.i("OBI", "OBI");
             obi_names = obi_doc.select("p._1UlGi");
             obi_prices = obi_doc.select("span._3IeOW");
             obi_ratings = obi_doc.getElementsByClass("_1N_Nr");
-            obi_oboi_count = obi_names.size();
             //Elements obi_img = obi_doc.getElementsByAttributeValueContaining("alt", "бои");
-            //Elements obi_imgs = obi_doc.getElementsByAttributeValueContaining("src", ".jpg");
+            //Elements obi_img = obi_doc.getElementsByAttributeValueContaining("src", ".jpg");
             //Elements obi_img = obi_doc.getElementsByClass("_1Z94x");
-            /* for (int i = 0; i < obi_names.size(); i+=2){
-                /*obiOboiHashCode = "obi_oboi_" + (i+1);
+            /* for (int i = 0; i < obi_names.size(); i++){
+                obiOboiHashCode = "obi_oboi_" + (i+1);
                 Elements obi_img = obi_doc.getElementsByAttributeValueContaining("alt", obi_names.get(i).text());
-                obi_oboi_prDt_help = new ProductData(i+1, obiOboiHashCode, obi_names.get(i).text(), obi_img.get(i).attr("alt"), Float.valueOf(obi_prices.get(i).text().replaceAll(" ", "").replace("₽", ""). replace(",", ".")),  "Metadata2", "Metadata3", obi_img.get(i).attr("src"), "Path", 1, Float.valueOf(obi_ratings.get(i).text().replace("(", "").replace(")","")), 1, true, "Oboi");
+                obi_oboi_prDt_help = new ProductData(i+1, obiHashCode, obi_names.get(i).text(), obi_img.get(i).attr("alt"), Float.valueOf(obi_prices.get(i).text().replaceAll(" ", "").replace("₽", ""). replace(",", ".")),  "Metadata2", "Metadata3", obi_img.get(i).attr("src"), "Path", 1, Float.valueOf(obi_ratings.get(i).text().replace("(", "").replace(")","")), 1, true, "Oboi");
                 obi_isSuccesfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
-                Log.i("OBI", String.valueOf(obi_isSuccesfullyAddedToDataBase)); */
+                Log.i("OBI", String.valueOf(obi_isSuccesfullyAddedToDataBase));
                 //Log.i("OBI", obi_names.get(i).text());
                 //Log.i("OBI", obi_prices.get(i).text());
-                //Log.i("OBI", obi_imgs.get(i).attr("src"));
-            // } */
+            }
+
             /*
             Log.i("ORDER", "ORDER");
             order_doc = Jsoup.connect("https://order-nn.ru/kmo/catalog/6315").get();
