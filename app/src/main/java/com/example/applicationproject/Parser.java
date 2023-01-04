@@ -30,7 +30,6 @@ public class Parser extends AsyncTask<Void, Void, Void> {
          obi_doc = null;
         //Document order_doc = null;
         //Document maxidom_doc = null;
-
         try {
             obi_doc = Jsoup.connect("https://clck.ru/32eAhB").get();
             Log.i("OBI", "OBI");
