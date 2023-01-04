@@ -12,12 +12,9 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class Parser extends AsyncTask<Void, Void, Void> {
-    static boolean obi_isSuccesfullyAddedToDataBase;
     //ProductData obi_oboi_prDt_help;
-    static CalcDataBase obi_oboi_prDt_main;
-    static String obiOboiHashCode;
     static Document obi_doc;
-    static Elements obi_names, obi_prices, obi_ratings;
+    static Elements obi_names, obi_prices, obi_ratings, obi_image;
 
 
     @Override
