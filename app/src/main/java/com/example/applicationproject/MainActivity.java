@@ -45,19 +45,23 @@ public class MainActivity extends AppCompatActivity {
 
         DataBaseFill db = new DataBaseFill(this);
         db.execute();
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -73,58 +77,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
-//class DataBase
-//{
-//    public void fillDataBase(Context context)
-//    {
-//        ProductData obi_oboi_prDt_help;
-//        obi_oboi_prDt_main = new CalcDataBase(context);
-//        int index = -1;
-//        for (int i = 0; i < obi_names.size(); i++) {
-//            try{
-//                obi_oboi_prDt_help = new ProductData(
-//                        i + 1, obiOboiHashCode,
-//                        obi_names.get(i).text(),
-//                        "Description",
-//                        Float.parseFloat(obi_prices.get(i)
-//                                .text()
-//                                .replaceAll(" ", "")
-//                                .replace("₽", "")
-//                                .replace(",", ".")),
-//                        "Metadata2", "Metadata3",
-//                        "ImageLink", "ImagePath",
-//                        1,
-//                        Float.parseFloat(obi_ratings.
-//                                get(i)
-//                                .text()
-//                                .replace("(", "")
-//                                .replace(")", "")),
-//                        1,
-//                        true,
-//                        "Oboi");
-//                index = index + 2;
-//                obi_isSuccesfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
-//                Log.i("OBI", obi_image.get(index).absUrl("src"));
-//                Log.i("OBI", obi_names.get(i).toString());
-//
-//            } catch (Exception e){
-//                obi_oboi_prDt_help = new ProductData(
-//                        -1,
-//                        "error",
-//                        "error",
-//                        "error",
-//                        0,
-//                        "error", "error",
-//                        "error", "error",
-//                        0, 0, 0,
-//                        false,
-//                        "error");
-//
-//                obi_isSuccesfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
-//                Log.i("OBI", String.valueOf(obi_isSuccesfullyAddedToDataBase));
-//            }
-//        }
-//    }
-//}

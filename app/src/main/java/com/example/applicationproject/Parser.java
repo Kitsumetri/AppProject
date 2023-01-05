@@ -10,10 +10,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class Parser extends AsyncTask<Void, Void, Void> {
-    static boolean obi_isSuccesfullyAddedToDataBase;
     //ProductData obi_oboi_prDt_help;
-    static CalcDataBase obi_oboi_prDt_main;
-    static String obiOboiHashCode;
     static Document obi_doc;
     static Elements obi_names, obi_prices, obi_ratings, obi_image;
 
@@ -25,19 +22,16 @@ public class Parser extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-         obi_doc = null;
+        //obi_doc = null;
         //Document order_doc = null;
         //Document maxidom_doc = null;
-
         try {
             obi_doc = Jsoup.connect("https://clck.ru/32eAhB").get();
-            Log.i("OBI", "OBI");
             obi_names = obi_doc.select("p._1UlGi");
             obi_prices = obi_doc.select("span._3IeOW");
             obi_ratings = obi_doc.getElementsByClass("_1N_Nr");
-
             obi_image = obi_doc.getElementsByAttributeValueContaining("src", ".jpg");
-
+            //Elements obi_img = obi_doc.getElementsByAttributeValueContaining("alt", "бои");
             //Elements obi_img = obi_doc.getElementsByAttributeValueContaining("src", ".jpg");
             //Elements obi_img = obi_doc.getElementsByClass("_1Z94x");
             /* for (int i = 0; i < obi_names.size(); i++){
