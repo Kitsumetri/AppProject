@@ -1,12 +1,10 @@
 package com.example.applicationproject;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -24,15 +22,15 @@ public class Parser extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-         obi_doc = null;
+        //obi_doc = null;
         //Document order_doc = null;
         //Document maxidom_doc = null;
         try {
             obi_doc = Jsoup.connect("https://clck.ru/32eAhB").get();
-            Log.i("OBI", "OBI");
             obi_names = obi_doc.select("p._1UlGi");
             obi_prices = obi_doc.select("span._3IeOW");
             obi_ratings = obi_doc.getElementsByClass("_1N_Nr");
+            obi_image = obi_doc.getElementsByAttributeValueContaining("src", ".jpg");
             //Elements obi_img = obi_doc.getElementsByAttributeValueContaining("alt", "бои");
             //Elements obi_img = obi_doc.getElementsByAttributeValueContaining("src", ".jpg");
             //Elements obi_img = obi_doc.getElementsByClass("_1Z94x");

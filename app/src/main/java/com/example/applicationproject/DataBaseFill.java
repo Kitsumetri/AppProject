@@ -26,14 +26,16 @@ public class DataBaseFill extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
+        CalcDataBase obi_oboi_prDt_main;
         ProductData obi_oboi_prDt_help;
-        CalcDataBase obi_oboi_prDt_main = new CalcDataBase(this.context);
+        obi_oboi_prDt_main = new CalcDataBase(this.context);
         boolean obi_isSuccessfullyAddedToDataBase;
         String obiOboiHashCode;
         int index = -1;
+        Log.i("OBI", "OBI");
         for (int i = 0; i < obi_names.size(); i++) {
+            obiOboiHashCode = "obi_oboi_" + (i + 1);
             try {
-                obiOboiHashCode = "obi_oboi_" + String.valueOf(i + 1);
                 obi_oboi_prDt_help = new ProductData(
                         i + 1, obiOboiHashCode,
                         obi_names.get(i).text(),
@@ -55,9 +57,10 @@ public class DataBaseFill extends AsyncTask<Void, Void, Void> {
                         true,
                         "Oboi");
                 index = index + 2;
-                obi_isSuccessfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
+                //obi_isSuccessfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
                 Log.i("OBI", obi_image.get(index).absUrl("src"));
                 Log.i("OBI", obi_names.get(i).toString());
+                //Log.i("OBI", String.valueOf(obi_isSuccessfullyAddedToDataBase));
 
             } catch (Exception e) {
                 obi_oboi_prDt_help = new ProductData(
@@ -73,7 +76,9 @@ public class DataBaseFill extends AsyncTask<Void, Void, Void> {
                         "error");
 
                 obi_isSuccessfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
+                //Log.i("OBI", obi_names.get(i).toString());
                 Log.i("OBI", String.valueOf(obi_isSuccessfullyAddedToDataBase));
+                e.printStackTrace();
             }
         }
         return null;
