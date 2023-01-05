@@ -5,8 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 
 public class CalcDataBase extends SQLiteOpenHelper {
 
@@ -63,10 +61,6 @@ public class CalcDataBase extends SQLiteOpenHelper {
 
         long insert = db.insert(PRODUCTS_DATA, null, cv);
 
-        if (insert == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return insert != -1;
     }
 }
