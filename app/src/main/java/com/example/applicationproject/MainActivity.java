@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.applicationproject.databinding.ActivityMainBinding;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
         com.example.applicationproject.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Parser p = new Parser();
-        p.execute();
-
-        DataBaseFill db = new DataBaseFill(this);
-        db.execute();
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+        Runnable db = new DataBaseFill(this);
+        executor.execute(db);
     }
 }
