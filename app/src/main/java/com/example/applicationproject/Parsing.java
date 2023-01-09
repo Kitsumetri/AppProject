@@ -45,6 +45,10 @@ public class Parsing {
                 Parser p = new Parser(url);
 
                 Document obi_doc = p.getDocument();
+                if (obi_doc == null) {
+                    return;
+                }
+
                 Elements obi_names = obi_doc.select("p._1UlGi");
                 Elements obi_prices = obi_doc.select("span._3IeOW");
                 Elements obi_ratings = obi_doc.getElementsByClass("_1N_Nr");

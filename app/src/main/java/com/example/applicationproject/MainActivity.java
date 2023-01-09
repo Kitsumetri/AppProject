@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         com.example.applicationproject.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ExecutorService executor = Executors.newFixedThreadPool(10);
+        ExecutorService executor = Executors.newFixedThreadPool(30);
         Runnable db = new DataBaseFill(this);
         executor.execute(db);
     }
