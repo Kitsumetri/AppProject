@@ -30,7 +30,7 @@ public class Parsing {
                 protected Document getDocument() {
                     obi_doc = null;
                     try {
-                        obi_doc = Jsoup.connect(this.url).get();
+                        obi_doc = Jsoup.connect(this.url).userAgent("Chrome").timeout(10 * 1000).get();
                     } catch (IOException e) {
                         Log.i("HUI", "Много хочешь");
                         e.printStackTrace();
