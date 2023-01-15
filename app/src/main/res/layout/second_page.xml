@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:rotation="0"
+    android:rotationY="0">
+
+
+    <ImageButton
+        android:layout_width="411dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="821dp" />
+
+    <TextView
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="829dp"
+        android:text="Назад"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="68dp"
+        android:text="Калькулятор обоев"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="340dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="240dp"
+        android:text="Калькулятор напольного покрытия"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="340dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="457dp"
+        android:text="Калькулятор потолков"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="340dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="640dp"
+        android:text="Калькулятор мебели"
+        android:textSize="24sp" />
+
+
+</FrameLayout>
