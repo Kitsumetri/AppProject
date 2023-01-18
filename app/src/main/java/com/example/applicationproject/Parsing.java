@@ -25,12 +25,13 @@ public class Parsing {
 
                 String url;
 
-                private Parser (String _url) { this.url = _url; }
+                private Parser (String _url)
+                { this.url = _url; }
 
                 protected Document getDocument() {
                     obi_doc = null;
                     try {
-                        obi_doc = Jsoup.connect(this.url).userAgent("Opera").timeout(10 * 1000).get();
+                        obi_doc = Jsoup.connect(this.url).userAgent("Opera").timeout(100 * 100).get();
                     } catch (IOException e) {
                         Log.i("RABOTYAGA", "obi Много хочешь");
                         e.printStackTrace();
