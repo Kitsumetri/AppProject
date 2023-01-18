@@ -19,7 +19,7 @@ public class Parsing {
 
     public class Obi {
 
-        public class Wallpaper {
+        public class ObiWallpaper {
             private class Parser {
                 Document obi_doc;
 
@@ -33,7 +33,7 @@ public class Parsing {
                     try {
                         obi_doc = Jsoup.connect(this.url).userAgent("Opera").timeout(100 * 100).get();
                     } catch (IOException e) {
-                        Log.i("HUI", "Много хочешь");
+                        Log.i("RABOTYAGA", "obi Много хочешь");
                         e.printStackTrace();
                     }
                     return obi_doc;
@@ -41,7 +41,7 @@ public class Parsing {
 
             }
 
-            public void parseWallpaper(String url)
+            public void parseObiWallpaper(String url)
             {
                 Parser p = new Parser(url);
 
@@ -61,11 +61,11 @@ public class Parsing {
                 boolean obi_isSuccessfullyAddedToDataBase;
                 String obiOboiHashCode;
                 int index = -1;
-                Log.i("OBI", "OBI");
+                //Log.i("RABOTYAGA", "OBI");
                 for (int i = 0; i < obi_names.size(); i++) {
                     obiOboiHashCode = "obi_oboi_" + (i + 1);
                     try {
-                        obi_oboi_prDt_help = new ProductData(
+                         /* obi_oboi_prDt_help = new ProductData(
                                 i + 1, obiOboiHashCode,
                                 obi_names.get(i).text(),
                                 "Description",
@@ -84,13 +84,13 @@ public class Parsing {
                                         .replace(")", "")),
                                 1,
                                 true,
-                                "Oboi");
+                                "Oboi"); */
                         index = index + 2;
-                        Log.i("OBI", obi_image.get(index).absUrl("src"));
-                        Log.i("OBI", obi_names.get(i).toString());
+                        //Log.i("RABOTYAGA", obi_image.get(index).absUrl("src"));
+                        Log.i("RABOTYAGA", "OBI " + obi_names.get(i).text());
 
                     } catch (Exception e) {
-                        obi_oboi_prDt_help = new ProductData(
+                        /* obi_oboi_prDt_help = new ProductData(
                                 -1,
                                 "error",
                                 "error",
@@ -103,19 +103,173 @@ public class Parsing {
                                 "error");
 
                         obi_isSuccessfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
-                        Log.i("OBI", String.valueOf(obi_isSuccessfullyAddedToDataBase));
+                        Log.i("OBI", String.valueOf(obi_isSuccessfullyAddedToDataBase)); */
+                        Log.i("RABOTYAGA", "obi oboi be rabotaet");
                         e.printStackTrace();
                     }
                 }
             }
         }
     }
+    public class Maxidom {
 
-//    public class Order {
-//
-//    }
-//
-//    public class Maxidom {
-//
-//    }
+        public class MaxidomWallpaper {
+            private class MaxiParser {
+                Document max_doc;
+
+                String url;
+
+                private MaxiParser(String _url) {
+                    this.url = _url;
+                }
+
+                protected Document getDocument() {
+                    max_doc = null;
+                    try {
+                        max_doc = Jsoup.connect(this.url).userAgent("Opera").get();
+                    } catch (IOException e) {
+                        Log.i("RABOTYAGA", "maxidom Много хочешь");
+                        e.printStackTrace();
+                    }
+                    return max_doc;
+                }
+
+            }
+
+            public void parseMaxidomWallpaper(String url) {
+                Parsing.Maxidom.MaxidomWallpaper.MaxiParser p = new Parsing.Maxidom.MaxidomWallpaper.MaxiParser(url);
+
+                Document max_doc = p.getDocument();
+                if (max_doc == null) {
+                    return;
+                }
+
+                Elements max_names = max_doc.select("a.name-big");
+                Elements max_prices = max_doc.select("span._3IeOW");
+                Elements max_ratings = max_doc.getElementsByClass("_1N_Nr");
+                Elements max_image = max_doc.getElementsByAttributeValueContaining("itemprop", "image");
+
+                CalcDataBase max_oboi_prDt_main;
+                ProductData max_oboi_prDt_help;
+                max_oboi_prDt_main = new CalcDataBase(context);
+                boolean max_isSuccessfullyAddedToDataBase;
+                String maxOboiHashCode;
+                //Log.i("RABOTYAGA", "MAXIDOM");
+                int counter = 0;
+                for (int i = 0; i < max_names.size(); i++) {
+                    maxOboiHashCode = "max_oboi_" + (i + 1);
+                    try {
+                        /* max_oboi_prDt_help = new ProductData(
+                                i + 1, maxOboiHashCode,
+                                max_names.get(i).text(),
+                                "Description",
+                                Float.parseFloat(max_prices.get(i)
+                                        .text()
+                                        .replaceAll(" ", "")
+                                        .replace("₽", "")
+                                        .replace(",", ".")),
+                                "Metadata2", "Metadata3",
+                                "ImageLink", "ImagePath",
+                                1,
+                                Float.parseFloat(max_ratings.
+                                        get(i)
+                                        .text()
+                                        .replace("(", "")
+                                        .replace(")", "")),
+                                1,
+                                true,
+                                "Oboi"); */
+                        //Log.i("RABOTYAGA", max_image.get(i).absUrl("src"));
+                        Log.i("RABOTYAGA", "MAXIDOM " + max_names.get(i).text());
+                        counter += 1;
+
+                    } catch (Exception e) {
+                        /* max_oboi_prDt_help = new ProductData(
+                                -1,
+                                "error",
+                                "error",
+                                "error",
+                                0,
+                                "error", "error",
+                                "error", "error",
+                                0, 0, 0,
+                                false,
+                                "error");
+
+                        max_isSuccessfullyAddedToDataBase = max_oboi_prDt_main.addOne(max_oboi_prDt_help);
+                        Log.i("RABOTYAGA", String.valueOf(max_isSuccessfullyAddedToDataBase)); */
+                        Log.i("RABOTYAGA", "maxidom oboi ne rabotaet");
+                        e.printStackTrace();
+                    }
+                }
+            }
+            public void parseMaxidomLaminat(String url) {
+                Parsing.Maxidom.MaxidomWallpaper.MaxiParser p = new Parsing.Maxidom.MaxidomWallpaper.MaxiParser(url);
+
+                Document max_doc = p.getDocument();
+                if (max_doc == null) {
+                    return;
+                }
+
+                Elements max_names = max_doc.select("a.name-big");
+                Elements max_prices = max_doc.select("span._3IeOW");
+                Elements max_ratings = max_doc.getElementsByClass("_1N_Nr");
+                Elements max_image = max_doc.getElementsByAttributeValueContaining("itemprop", "image");
+
+                CalcDataBase max_oboi_prDt_main;
+                ProductData max_oboi_prDt_help;
+                max_oboi_prDt_main = new CalcDataBase(context);
+                boolean max_isSuccessfullyAddedToDataBase;
+                String maxOboiHashCode;
+                //Log.i("RABOTYAGA", "MAXIDOM");
+                int counter = 0;
+                for (int i = 0; i < max_names.size(); i++) {
+                    maxOboiHashCode = "max_laminat_" + (i + 1);
+                    try {
+                        /* max_oboi_prDt_help = new ProductData(
+                                i + 1, maxOboiHashCode,
+                                max_names.get(i).text(),
+                                "Description",
+                                Float.parseFloat(max_prices.get(i)
+                                        .text()
+                                        .replaceAll(" ", "")
+                                        .replace("₽", "")
+                                        .replace(",", ".")),
+                                "Metadata2", "Metadata3",
+                                "ImageLink", "ImagePath",
+                                1,
+                                Float.parseFloat(max_ratings.
+                                        get(i)
+                                        .text()
+                                        .replace("(", "")
+                                        .replace(")", "")),
+                                1,
+                                true,
+                                "Oboi"); */
+                        //Log.i("RABOTYAGA", max_image.get(i).absUrl("src"));
+                        Log.i("RABOTYAGA", "MAXIDOM " + max_names.get(i).text());
+                        counter += 1;
+
+                    } catch (Exception e) {
+                        /* max_oboi_prDt_help = new ProductData(
+                                -1,
+                                "error",
+                                "error",
+                                "error",
+                                0,
+                                "error", "error",
+                                "error", "error",
+                                0, 0, 0,
+                                false,
+                                "error");
+
+                        max_isSuccessfullyAddedToDataBase = max_oboi_prDt_main.addOne(max_oboi_prDt_help);
+                        Log.i("RABOTYAGA", String.valueOf(max_isSuccessfullyAddedToDataBase)); */
+                        Log.i("RABOTYAGA", "maxidom laminat ne rabotaet");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
 }
