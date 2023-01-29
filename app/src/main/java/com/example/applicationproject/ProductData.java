@@ -164,7 +164,4 @@ public class ProductData {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
 }
