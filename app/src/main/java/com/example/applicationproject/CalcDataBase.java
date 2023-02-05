@@ -5,26 +5,24 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 
 public class CalcDataBase extends SQLiteOpenHelper {
 
-    public static final String PRODUCTS_DATA = "PRODUCTS_DATA";
-    public static final String COLUMN_ID = "ID";
-    public static final String COLUMN_HASH_ID = "HASH" + COLUMN_ID;
-    public static final String COLUMN_NAME = "NAME";
-    public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
-    public static final String COLUMN_PRICE = "PRICE";
-    public static final String COLUMN_METADATA_2 = "METADATA2";
-    public static final String COLUMN_METADATA_3 = "METADATA3";
-    public static final String COLUMN_ITEM_SOURCE_LINK = "ITEMSOURCELINK";
-    public static final String COLUMN_IMAGE_PATH = "IMAGEPATH";
-    public static final String COLUMN_NUMBER_OF_CALLS = "NUMBEROFCALLS";
-    public static final String COLUMN_RATING = "RATING";
-    public static final String COLUMN_PRIORITY = "PRIORITY";
-    public static final String COLUMN_IS_IN_STORE = "ISINSTORE";
-    public static final String COLUMN_CATEGORY = "CATEGORY";
+    private static final String PRODUCTS_DATA = "PRODUCTS_DATA";
+    private static final String COLUMN_ID = "ID";
+    private static final String COLUMN_HASH_ID = "HASH" + COLUMN_ID;
+    private static final String COLUMN_NAME = "NAME";
+    private static final String COLUMN_DESCRIPTION = "DESCRIPTION";
+    private static final String COLUMN_PRICE = "PRICE";
+    private static final String COLUMN_METADATA_2 = "METADATA2";
+    private static final String COLUMN_METADATA_3 = "METADATA3";
+    private static final String COLUMN_ITEM_SOURCE_LINK = "ITEMSOURCELINK";
+    private static final String COLUMN_IMAGE_PATH = "IMAGEPATH";
+    private static final String COLUMN_NUMBER_OF_CALLS = "NUMBEROFCALLS";
+    private static final String COLUMN_RATING = "RATING";
+    private static final String COLUMN_PRIORITY = "PRIORITY";
+    private static final String COLUMN_IS_IN_STORE = "ISINSTORE";
+    private static final String COLUMN_CATEGORY = "CATEGORY";
 
     public CalcDataBase(Context context) {
         super(context, "calculatorBase.db", null, 1);
@@ -63,10 +61,6 @@ public class CalcDataBase extends SQLiteOpenHelper {
 
         long insert = db.insert(PRODUCTS_DATA, null, cv);
 
-        if (insert == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return insert != -1;
     }
 }

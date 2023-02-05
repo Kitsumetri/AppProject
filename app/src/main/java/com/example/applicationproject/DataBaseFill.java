@@ -1,82 +1,58 @@
 package com.example.applicationproject;
 
-import static com.example.applicationproject.Parser.obiOboiHashCode;
-import static com.example.applicationproject.Parser.obi_image;
-import static com.example.applicationproject.Parser.obi_isSuccesfullyAddedToDataBase;
-import static com.example.applicationproject.Parser.obi_names;
-import static com.example.applicationproject.Parser.obi_oboi_prDt_main;
-import static com.example.applicationproject.Parser.obi_prices;
-import static com.example.applicationproject.Parser.obi_ratings;
-
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class DataBaseFill extends AsyncTask<Void, Void, Void> {
+public class DataBaseFill {
 
     private final Context context;
 
+    public DataBaseFill(Context context) { this.context = context; }
 
-    DataBaseFill(Context context) {
-        this.context = context;
-    }
+    public void run() {
+        Parsing parsing = new Parsing(this.context);
+        /*
+        Parsing.Obi obi_parsing = parsing.new Obi();
+        Parsing.Obi.ObiWallpaper obw = obi_parsing.new ObiWallpaper();
+        ObiParse(obw);
+         */
 
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-    }
-
-    @Override
-    protected Void doInBackground(Void... voids) {
-
-        ProductData obi_oboi_prDt_help;
-        obi_oboi_prDt_main = new CalcDataBase(this.context);
-        int index = -1;
-        for (int i = 0; i < obi_names.size(); i++) {
-            try {
-                obi_oboi_prDt_help = new ProductData(
-                        i + 1, obiOboiHashCode,
-                        obi_names.get(i).text(),
-                        "Description",
-                        Float.parseFloat(obi_prices.get(i)
-                                .text()
-                                .replaceAll(" ", "")
-                                .replace("₽", "")
-                                .replace(",", ".")),
-                        "Metadata2", "Metadata3",
-                        "ImageLink", "ImagePath",
-                        1,
-                        Float.parseFloat(obi_ratings.
-                                get(i)
-                                .text()
-                                .replace("(", "")
-                                .replace(")", "")),
-                        1,
-                        true,
-                        "Oboi");
-                index = index + 2;
-                obi_isSuccesfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
-                Log.i("OBI", obi_image.get(index).absUrl("src"));
-                Log.i("OBI", obi_names.get(i).toString());
-
-            } catch (Exception e) {
-                obi_oboi_prDt_help = new ProductData(
-                        -1,
-                        "error",
-                        "error",
-                        "error",
-                        0,
-                        "error", "error",
-                        "error", "error",
-                        0, 0, 0,
-                        false,
-                        "error");
-
-                obi_isSuccesfullyAddedToDataBase = obi_oboi_prDt_main.addOne(obi_oboi_prDt_help);
-                Log.i("OBI", String.valueOf(obi_isSuccesfullyAddedToDataBase));
-            }
+        Parsing.Maxidom max_parsing = parsing.new Maxidom();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        for(int i = 0 ; i <= 10 ; i++) {
+            executor.submit(max_parsing.new MaxidomWallpaper());
         }
-        return null;
+        executor.shutdown();
+//        Parsing.Order ord_parsing = parsing.new Order();
+//        Parsing.Order.OrderWallpaper orw = ord_parsing.new OrderWallpaper();
+//        OrdParse(orw);
     }
+    private void ObiParse(Parsing.Obi.ObiWallpaper obj) {
+        String[] wallpapers_url = {
+                "https://clck.ru/33Cjpe", "https://clck.ru/33Cjof", "https://clck.ru/33Cjpn",
+                "https://clck.ru/33Cjpz", "https://clck.ru/33Cjq4", "https://clck.ru/33Cjqu",
+                "https://clck.ru/33Cjqz"};
+
+        for (String s : wallpapers_url) {
+            obj.parseObiWallpaper(s);
+        }
+        //String wallpapers_url = "https://obi.ru/vsjo-dlja-doma/oboi/flizelinovye-oboi?page=";
+        /* for (int i =0; i <=5; i++){
+            obj.parseWallpaper(wallpapers_url + i);
+        } */
+        //obj.parseWallpaper((wallpapers_url + 2));
+    }
+
+//    private void OrdParse(Parsing.Order.OrderWallpaper obj) {
+//        String wallpapers_url = "https://order-nn.ru/kmo/catalog/6316/?PAGEN_1=";
+//        //String laminat_url = "https://www.maxidom.ru/catalog/laminat/?amount=12&PAGEN_3=";
+//        for (int i =0; i < 80; i++){
+//            obj.parseOrderWallpaper(wallpapers_url + i);
+//            //obj.parseMaxidomLaminat(laminat_url + i);
+//            //Log.i("RABOTYAGA", String.valueOf(i));
+//        }
+//    }
 }
