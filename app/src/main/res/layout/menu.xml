@@ -3,30 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:rotation="0"
-    android:rotationY="0">
+    android:rotationY="0"
+    >
 
   <Button
       android:id="@+id/button_settings"
       android:layout_marginStart="74dp"
-      android:layout_marginTop="807dp"
+      android:layout_marginTop="787dp"
       android:layout_width="75dp"
       android:layout_height="75dp"
-      android:background="@drawable/icon_filt"  />
+      android:background="@drawable/icon_filt" />
 
   <Button
       android:id="@+id/button_back"
       android:layout_marginStart="262dp"
-      android:layout_marginTop="809dp"
+      android:layout_marginTop="789dp"
       android:layout_width="70dp"
       android:layout_height="70dp"
-      android:background="@drawable/icon_back" />
+      android:background="@drawable/icon_back"
+      />
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="95dp"
-      android:layout_marginTop="796dp"
+      android:layout_height="163dp"
+      android:layout_marginTop="746dp"
       android:layout_marginEnd="0dp"
-      android:background="@drawable/rounded_background_different_angel" />
+      android:background="@drawable/gradient" />
 
   <LinearLayout
       android:layout_width="380dp"
@@ -54,9 +56,9 @@
 
   </LinearLayout>
 
-  <ImageView
+  <!--<ImageView
       android:layout_width="380dp"
       android:layout_height="200dp"
-      android:background="@drawable/info_frame" />
+      android:background="@drawable/info_frame" />-->
 
 </FrameLayout>
