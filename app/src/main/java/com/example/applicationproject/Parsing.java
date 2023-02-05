@@ -20,98 +20,6 @@ public class Parsing {
     public Parsing(Context context) {
         this.context = context;
     }
-    /*
-    public class Obi {
-
-        public class ObiWallpaper {
-            private class Parser {
-                Document obi_doc;
-
-                String url;
-
-                private Parser (String _url) { this.url = _url; }
-
-                protected Document getDocument() {
-                    obi_doc = null;
-                    try {
-                        obi_doc = Jsoup.connect(this.url).userAgent("Opera").timeout(10 * 1000).get();
-                    } catch (IOException e) {
-                        Log.i("RABOTYAGA", "obi Много хочешь");
-                        e.printStackTrace();
-                    }
-                    return obi_doc;
-                }
-
-            }
-
-            public void parseObiWallpaper(String url)
-            {
-                Parser p = new Parser(url);
-
-                Document obi_doc = p.getDocument();
-                if (obi_doc == null) {
-                    return;
-                }
-
-                Elements obi_names = obi_doc.select("p._1UlGi");
-                Elements obi_prices = obi_doc.select("span._3IeOW");
-                Elements obi_ratings = obi_doc.getElementsByClass("_1N_Nr");
-                Elements obi_image = obi_doc.getElementsByAttributeValueContaining("src", ".jpg");
-
-                ProductData obi_oboi_prDt;
-                dbRef = FirebaseDatabase.getInstance().getReference("obi_oboi");
-                String obiOboiHashCode;
-                int index = -1;
-                //Log.i("RABOTYAGA", "OBI");
-                for (int i = 0; i < obi_names.size(); i++) {
-                    obiOboiHashCode = "obi_oboi_" + (i + 1);
-                    try {
-                         obi_oboi_prDt = new ProductData(
-                                i + 1, obiOboiHashCode,
-                                obi_names.get(i).text(),
-                                "Description",
-                                Float.parseFloat(obi_prices.get(i)
-                                        .text()
-                                        .replaceAll(" ", "")
-                                        .replace("₽", "")
-                                        .replace(",", ".")),
-                                "Metadata2", "Metadata3",
-                                "ImageLink", "ImagePath",
-                                1,
-                                Float.parseFloat(obi_ratings.
-                                        get(i)
-                                        .text()
-                                        .replace("(", "")
-                                        .replace(")", "")),
-                                1,
-                                true,
-                                "Oboi");
-                        index = index + 2;
-                        //Log.i("RABOTYAGA", obi_image.get(index).absUrl("src"));
-                        Log.i("RABOTYAGA", "OBI " + obi_names.get(i).text());
-
-                        dbRef.push().setValue(obi_oboi_prDt);
-
-                    } catch (Exception e) {
-                        obi_oboi_prDt = new ProductData(
-                                -1,
-                                "error",
-                                "error",
-                                "error",
-                                0,
-                                "error", "error",
-                                "error", "error",
-                                0, 0, 0,
-                                false,
-                                "error");
-
-                        Log.i("RABOTYAGA", "obi oboi be rabotaet");
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    } */
     public class Maxidom {
 
         private class MaxiParser {
@@ -206,13 +114,11 @@ public class Parsing {
 
             Elements max_names = max_doc.getElementsByClass("name-big");
             Elements max_prices = max_doc.getElementsByAttribute("data-repid_price");
-            //Elements max_image = max_doc.getElementsByAttributeValueContaining("alt", "обои");
 
             ProductData maxidom_prDt;
             dbRef = FirebaseDatabase.getInstance("https://hse-project-ee9a9-default-rtdb.europe-west1.firebasedatabase.app").getReference("maxidom-laminat");
             String maxOboiHashCode;
             float aboba_price;
-            //Log.i("RABOTYAGA", "MAXIDOM");
             for (int i = 0; i < max_names.size(); i++) {
                 maxOboiHashCode = "max_laminat_" + (i + 1);
                 try {
