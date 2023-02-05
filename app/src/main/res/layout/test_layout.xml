@@ -15,20 +15,6 @@
         android:text="Начать работу"
         android:textSize="@dimen/textSize" />-->
 
-    <ImageButton
-        android:layout_width="411dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="821dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="829dp"
-        android:text="Настройки"
-        android:textSize="36sp" />
-
 
     <Button
         android:id="@+id/button"
