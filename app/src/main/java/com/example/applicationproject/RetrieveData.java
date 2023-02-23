@@ -35,21 +35,39 @@ public class RetrieveData {
 
         mDatabase = FirebaseDatabase.getInstance("https://hse-project-ee9a9-default-rtdb.europe-west1.firebasedatabase.app").getReference();
 
-        mDatabase.child("maxidom-dveri").get();
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for (DataSnapshot childSnapshot: dataSnapshot.child("maxidom-laminat").getChildren()){
+                    ProductData value = childSnapshot.getValue(ProductData.class);
+                    Log.d("firebase", "Value is: " + value.name);
+                }
+//                ProductData value = dataSnapshot.child("maxidom-laminat").getValue(ProductData.class);
+//                Log.d("firebase", "Value is: " + value.name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w("firebase", "Failed to read value.", error.toException());
+            }
+        });
 
 //        for (DataSnapshot child : ds.getChildren()) {
 //            String key_id = child.getKey();
-////            mDatabase.child("maxidom-dveri").child(key_id).child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-////                @Override
-////                public void onComplete(@NonNull Task<DataSnapshot> task) {
-////                    if (!task.isSuccessful()) {
-////                        Log.e("firebase", "Error getting data", task.getException());
-////                    }
-////                    else {
-////                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
-////                    }
-////                }
-////            });
+//            mDatabase.child("maxidom-dveri").child(key_id).child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                    if (!task.isSuccessful()) {
+//                        Log.e("firebase", "Error getting data", task.getException());
+//                    }
+//                    else {
+//                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+//                    }
+//                }
+//            });
 //            Log.i("fireabase", key_id);
 //        }
 

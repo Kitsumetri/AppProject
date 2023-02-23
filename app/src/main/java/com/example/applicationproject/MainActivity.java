@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<State> states = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -42,10 +40,5 @@ public class MainActivity extends AppCompatActivity {
 //          RecyclerView recyclerView = findViewById(R.id.list);
 //          StateAdapter adapter = new StateAdapter(this, states);
 //         recyclerView.setAdapter(adapter);
-    }
-    private void setInitialData() {
-
-        states.add(new State ("Бразилия", 100, R.drawable.icon_back));
-        states.add(new State ("Аргентина", 10, R.drawable.icon_back));
     }
 }
