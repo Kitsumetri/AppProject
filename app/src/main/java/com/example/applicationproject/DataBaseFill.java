@@ -54,9 +54,9 @@ public class DataBaseFill implements Runnable {
         obj.parseMaxidomWallpaper(wallpapers_url + 1);
         obj.parseMaxidomLaminat(laminat_url + 1);
         //obj.parseMaxidomPlitka(plitka_url);
-        obj.parseMaxidomPlintusPVH(plintus_url + 1);
+        //obj.parseMaxidomPlintusPVH(plintus_url + 1);
         //obj.parseMaxidomDveri(dveri_url);
-        obj.parseMaxidomPotPlitka(pot_plitka_url + 1);
+        //obj.parseMaxidomPotPlitka(pot_plitka_url + 1);
     }
 }
 
