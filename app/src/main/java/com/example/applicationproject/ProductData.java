@@ -81,4 +81,8 @@ public class ProductData {
     public void setInStore(boolean inStore) {
         isInStore = inStore;
     }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -1,44 +1,38 @@
 package com.example.applicationproject;
 
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.widget.Button;
+import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    AdapterExample adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        setContentView(R.layout.menu);
-        // Button button = findViewById(R.id.button_back);
-        // button.setOnClickListener(v -> finish());
+        ArrayList<ProductData> productData = new ArrayList<>();
 
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
+        for (int i = 0; i < 11; ++i) {
+            ProductData p = new ProductData();
+            p.setName("AMOGUS");
+            productData.add(p);
+            Log.i("CHECK", productData.get(i).getName());
+        }
 
-//        DataBaseFill db = new DataBaseFill(this);
-//        db.run();
+        Log.i("CHECK", String.valueOf(productData.size()));
 
-        // RetrieveData rd = new RetrieveData();
-        // rd.Start();
+        RecyclerView recyclerView = findViewById(R.id.rvProduct);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new AdapterExample(this, productData);
+        recyclerView.setAdapter(adapter);
 
-//          setInitialData();
-//          RecyclerView recyclerView = findViewById(R.id.list);
-//          StateAdapter adapter = new StateAdapter(this, states);
-//         recyclerView.setAdapter(adapter);
     }
 }
