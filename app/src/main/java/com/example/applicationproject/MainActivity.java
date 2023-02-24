@@ -11,28 +11,28 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    AdapterExample adapter;
+    ProductAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        RetrieveData retrieveData = new RetrieveData();
+
         ArrayList<ProductData> productData = new ArrayList<>();
+        retrieveData.Start(value -> {
+            for (ProductData p : value) {
+                productData.add(new ProductData(p));
+                Log.i("firebase", String.valueOf(productData));
+            };
+        });
 
-        for (int i = 0; i < 11; ++i) {
-            ProductData p = new ProductData();
-            p.setName("AMOGUS");
-            productData.add(p);
-            Log.i("CHECK", productData.get(i).getName());
-        }
-
-        Log.i("CHECK", String.valueOf(productData.size()));
+        Log.i("firebase", String.valueOf(productData.size()));
 
         RecyclerView recyclerView = findViewById(R.id.rvProduct);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new AdapterExample(this, productData);
+        adapter = new ProductAdapter(this, productData);
         recyclerView.setAdapter(adapter);
-
     }
 }

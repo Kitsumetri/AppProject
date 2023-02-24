@@ -23,7 +23,23 @@ public class ProductData {
         this.category = category;
     }
 
-    public ProductData() {
+    public ProductData() {}
+
+    public ProductData(ProductData other) {
+        this.id = other.id;
+        this.hashId = other.hashId;
+        this.name = other.name;
+        this.description = other.description;
+        this.price = other.price;
+        this.metaData2 = other.metaData2;
+        this.metaData3 = other.metaData3;
+        this.itemSourceLink = other.itemSourceLink;
+        this.imagePath = other.imagePath;
+        this.numberOfCalls = other.numberOfCalls;
+        this.rating = other.rating;
+        this.priority = other.priority;
+        this.isInStore = other.isInStore;
+        this.category = other.category;
     }
 
     public void setNumberOfCalls(int numberOfCalls) {

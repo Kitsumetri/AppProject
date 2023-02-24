@@ -1,7 +1,6 @@
 package com.example.applicationproject;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AdapterExample extends RecyclerView.Adapter<AdapterExample.ViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private final List<ProductData> mData;
     private final LayoutInflater mInflater;
 
-    AdapterExample(Context context, @NonNull List<ProductData> data) {
+    ProductAdapter(Context context, @NonNull List<ProductData> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
