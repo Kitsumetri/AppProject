@@ -25,75 +25,45 @@ public class ProductData {
 
     public ProductData() {}
 
-    public ProductData(ProductData other) {
-        this.id = other.id;
-        this.hashId = other.hashId;
-        this.name = other.name;
-        this.description = other.description;
-        this.price = other.price;
-        this.metaData2 = other.metaData2;
-        this.metaData3 = other.metaData3;
-        this.itemSourceLink = other.itemSourceLink;
-        this.imagePath = other.imagePath;
-        this.numberOfCalls = other.numberOfCalls;
-        this.rating = other.rating;
-        this.priority = other.priority;
-        this.isInStore = other.isInStore;
-        this.category = other.category;
-    }
-
     public void setNumberOfCalls(int numberOfCalls) {
         this.numberOfCalls = numberOfCalls;
     }
-
     public void setPriority(int priority) {
         this.priority = priority;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
     public void setHashId(String hashId) {
         this.hashId = hashId;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public void setMetaData2(String metaData2) {
         this.metaData2 = metaData2;
     }
-
     public void setMetaData3(String metaData3) {
         this.metaData3 = metaData3;
     }
-
     public void setItemSourceLink(String itemSourceLink) {
         this.itemSourceLink = itemSourceLink;
     }
-
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
-
     public void setCategory(String category) {
         this.category = category;
     }
-
     public void setPrice(float price) {
         this.price = price;
     }
-
     public void setRating(float rating) {
         this.rating = rating;
     }
-
     public void setInStore(boolean inStore) {
         isInStore = inStore;
     }
@@ -101,4 +71,18 @@ public class ProductData {
     public String getName() {
         return name;
     }
+
+    public int getNumberOfCalls() { return numberOfCalls; }
+    public int getPriority() { return priority; }
+    public String getId() { return id; }
+    public String getHashId() { return hashId; }
+    public String getDescription() { return description; }
+    public String getMetaData2() { return metaData2; }
+    public String getMetaData3() { return metaData3; }
+    public String getItemSourceLink() { return itemSourceLink; }
+    public String getImagePath() { return imagePath; }
+    public String getCategory() { return category; }
+    public float getPrice() { return price; }
+    public float getRating() { return rating; }
+    public boolean isInStore() { return isInStore; }
 }
