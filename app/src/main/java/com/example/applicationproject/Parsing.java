@@ -64,7 +64,8 @@
 //                maxOboiHashCode = "max_oboi_" + (i + 1);
 //                try {
 //                    maxidom_prDt = new ProductData(
-//                            dbRef.getKey(), maxOboiHashCode,
+//                            dbRef.getKey(),
+//                            maxOboiHashCode,
 //                            max_names.get(i).text(),
 //                            "Description",
 //                            Float.parseFloat(max_prices.get(i)

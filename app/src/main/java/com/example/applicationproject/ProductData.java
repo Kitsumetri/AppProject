@@ -71,7 +71,6 @@ public class ProductData {
     public String getName() {
         return name;
     }
-
     public int getNumberOfCalls() { return numberOfCalls; }
     public int getPriority() { return priority; }
     public String getId() { return id; }

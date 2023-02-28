@@ -1,13 +1,17 @@
 package com.example.applicationproject;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -28,9 +32,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProductData productData = mData.get(position);
-        holder.myTextView.setText(productData.getName());
+
+        holder.myTextViewName.setText(productData.getName());
+        // holder.bg.setLayoutDirection(position);
+        holder.myTextViewDescription.setText(productData.getDescription());
+        if(position %2 == 1)
+        {
+            Picasso.get().load("https://i.imgur.com/fkTLdcJ.png").into(holder.imageView);
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
+        else
+        {
+            Picasso.get().load("https://i.imgur.com/0Ek5uIJ.png").into(holder.imageView);
+            holder.itemView.setBackgroundColor(Color.parseColor("#BBBBBB"));
+            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
+        }
     }
 
     @Override
@@ -39,10 +58,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView myTextView;
+        TextView myTextViewName;
+        TextView myTextViewDescription;
+        ImageView imageView;
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.textViewName);
+            myTextViewName = itemView.findViewById(R.id.textViewName);
+            myTextViewDescription = itemView.findViewById(R.id.textViewDescription);
+            imageView = itemView.findViewById(R.id.image_for_row);
+
         }
     }
 }
