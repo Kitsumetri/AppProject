@@ -35,20 +35,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProductData productData = mData.get(position);
 
+        Picasso.get().load(productData.getItemSourceLink()).into(holder.imageView);
         holder.myTextViewName.setText(productData.getName());
-        // holder.bg.setLayoutDirection(position);
-        holder.myTextViewDescription.setText(productData.getDescription());
-        if(position %2 == 1)
-        {
-            Picasso.get().load("https://i.imgur.com/fkTLdcJ.png").into(holder.imageView);
+        holder.myTextViewDescription.setText(String.valueOf(productData.getPrice() + " рублей"));
+        if(position % 2 == 1) {
             holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
-        else
-        {
-            Picasso.get().load("https://i.imgur.com/0Ek5uIJ.png").into(holder.imageView);
+        else {
             holder.itemView.setBackgroundColor(Color.parseColor("#BBBBBB"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
         }
     }
 

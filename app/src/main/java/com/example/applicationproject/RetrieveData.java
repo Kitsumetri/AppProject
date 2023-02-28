@@ -15,8 +15,11 @@ public class RetrieveData {
     public interface ProductListCallback { void onCallback(ArrayList<ProductData> value); }
 
     public void Start(final ProductListCallback Callback) {
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://hse-project-ee9a9-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+        String url =  "https://hse-project-ee9a9-default-rtdb.europe-west1.firebasedatabase.app";
         ArrayList<ProductData> productData = new ArrayList<>();
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance(url).getReference();
+
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -25,8 +28,6 @@ public class RetrieveData {
                     productData.add(value);
                 }
                 Callback.onCallback(productData);
-
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) { throw error.toException(); }

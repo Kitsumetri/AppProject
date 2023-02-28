@@ -1,36 +1,24 @@
 package com.example.applicationproject;
 
 public class ProductData {
-    public int numberOfCalls, priority;
-    public  String id, hashId, name, description, metaData2, metaData3, itemSourceLink, imagePath, category;
-    public  float price, rating;
-    public  boolean isInStore;
+    private  String id, hashId, name, description, itemSourceLink, category;
+    private  float price, rating;
+    private  boolean isInStore;
 
-    public ProductData(String id, String hashId, String name, String description, float price, String metaData2, String metaData3, String itemSourceLink, String imagePath, int numberOfCalls, float rating, int priority, boolean isInStore, String category) {
+    public ProductData(String id, String hashId, String name, String description, float price, String itemSourceLink,  float rating,  boolean isInStore, String category) {
         this.id = id;
         this.hashId = hashId;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.metaData2 = metaData2;
-        this.metaData3 = metaData3;
         this.itemSourceLink = itemSourceLink;
-        this.imagePath = imagePath;
-        this.numberOfCalls = numberOfCalls;
         this.rating = rating;
-        this.priority = priority;
         this.isInStore = isInStore;
         this.category = category;
     }
 
     public ProductData() {}
 
-    public void setNumberOfCalls(int numberOfCalls) {
-        this.numberOfCalls = numberOfCalls;
-    }
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
     public void setId(String id) {
         this.id = id;
     }
@@ -43,17 +31,8 @@ public class ProductData {
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setMetaData2(String metaData2) {
-        this.metaData2 = metaData2;
-    }
-    public void setMetaData3(String metaData3) {
-        this.metaData3 = metaData3;
-    }
     public void setItemSourceLink(String itemSourceLink) {
         this.itemSourceLink = itemSourceLink;
-    }
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
     public void setCategory(String category) {
         this.category = category;
@@ -71,15 +50,10 @@ public class ProductData {
     public String getName() {
         return name;
     }
-    public int getNumberOfCalls() { return numberOfCalls; }
-    public int getPriority() { return priority; }
     public String getId() { return id; }
     public String getHashId() { return hashId; }
     public String getDescription() { return description; }
-    public String getMetaData2() { return metaData2; }
-    public String getMetaData3() { return metaData3; }
     public String getItemSourceLink() { return itemSourceLink; }
-    public String getImagePath() { return imagePath; }
     public String getCategory() { return category; }
     public float getPrice() { return price; }
     public float getRating() { return rating; }
