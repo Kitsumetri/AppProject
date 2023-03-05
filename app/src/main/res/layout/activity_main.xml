@@ -4,9 +4,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#8F8A94">
+
+        <ImageView
+            android:id="@+id/imageBack"
+            android:layout_width="45dp"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/description"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:paddingStart="15dp"
+            android:src="@drawable/icon_back" />
+
+        <ImageView
+            android:id="@+id/imageSettings"
+            android:src="@drawable/icon_settings"
+            android:layout_width="45dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:paddingEnd="15dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/description"/>
+
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProduct"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/menuLayout"/>
 
 </RelativeLayout>

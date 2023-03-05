@@ -39,10 +39,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.myTextViewName.setText(productData.getName());
         holder.myTextViewDescription.setText(String.valueOf(productData.getPrice() + " рублей"));
         if(position % 2 == 1) {
-            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#CDBFA8"));
         }
         else {
-            holder.itemView.setBackgroundColor(Color.parseColor("#BBBBBB"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#D3A092"));
         }
     }
 

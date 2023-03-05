@@ -1,47 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:color='@color/purple_700'>
+    android:color="#E4D5BE">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="185dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="167dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/rounded_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal" />
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:background="#E9E4C6"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="0dp"
-        android:layout_height="92dp"
-        android:layout_marginEnd="40dp"
-        android:background="#111111"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
-        app:layout_constraintTop_toTopOf="@+id/imageButton4" />
+     <TextView
+         android:id="@+id/object_name"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:fontFamily="@font/main_font"
+         android:text="@string/name"
+         android:textSize="30sp"
+         android:textColor="#7F4E40"
+         android:layout_marginTop="10dp"
+         android:layout_marginEnd="30dp"
+         android:layout_marginStart="30dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="11dp"
-        android:background="#111111"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+     <ImageView
+         android:id="@+id/image"
+         android:layout_width="178dp"
+         android:layout_height="250dp"
+         android:layout_marginStart="24dp"
+         android:layout_marginTop="15dp"
+         android:background="#000000"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/object_name" />
+
+     <TextView
+         android:id="@+id/object_rating"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="45dp"
+         android:layout_marginEnd="30dp"
+         android:layout_marginStart="30dp"
+         android:fontFamily="@font/main_font"
+         android:text="@string/rating"
+         android:textSize="80sp"
+         android:textColor="#E4B460"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toEndOf="@+id/image"
+         app:layout_constraintTop_toBottomOf="@+id/object_name" />
+
+     <TextView
+         android:id="@+id/object_category"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:fontFamily="@font/main_font"
+         android:text="@string/category"
+         android:textSize="30sp"
+         android:textColor="#7F4E40"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toEndOf="@+id/image"
+         app:layout_constraintTop_toBottomOf="@+id/object_rating" />
+
+     <TextView
+         android:id="@+id/object_cost"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="10dp"
+         android:layout_marginEnd="24dp"
+         android:layout_marginStart="24dp"
+         android:fontFamily="@font/main_font"
+         android:text="@string/costs"
+         android:textSize="30sp"
+         android:textColor="#7F4E40"
+         android:layout_marginTop="25dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toEndOf="@+id/image"
+         app:layout_constraintTop_toBottomOf="@+id/object_category" />
+
+     <TextView
+         android:id="@+id/object_description"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="43dp"
+         android:layout_marginEnd="24dp"
+         android:layout_marginStart="24dp"
+         android:fontFamily="@font/main_font"
+         android:text="@string/description"
+         android:textSize="25sp"
+         android:textColor="#7F4E40"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/image" />
+
+     <TextView
+         android:id="@+id/object_in_store"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="20dp"
+         android:fontFamily="@font/main_font"
+         android:text="@string/in_store"
+         android:textSize="25sp"
+         android:textColor="#7F4E40"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintBottom_toTopOf="@+id/back_button" />
+
+
+     <ImageButton
+         android:id="@+id/back_button"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="20dp"
+         android:background="@drawable/baseline_clear_24"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintBottom_toBottomOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
