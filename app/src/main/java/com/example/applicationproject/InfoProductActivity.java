@@ -11,8 +11,5 @@ public class InfoProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_frame);
-
-        Intent intent = getIntent();
-
     }
 }

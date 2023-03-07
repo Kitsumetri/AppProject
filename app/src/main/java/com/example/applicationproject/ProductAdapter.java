@@ -21,9 +21,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     private final List<ProductData> mData;
     private final LayoutInflater mInflater;
 
-    ProductAdapter(Context context, @NonNull List<ProductData> data) {
+    private RecyclerViewClickListener listener;
+
+
+    ProductAdapter(Context context, @NonNull List<ProductData> data, RecyclerViewClickListener listener) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.listener = listener;
     }
 
     @NonNull
@@ -55,7 +59,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return mData.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public interface RecyclerViewClickListener{
+        void onClick(View v, int position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView myTextViewName;
         TextView myTextViewDescription;
         ImageView imageView;
@@ -65,16 +73,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             myTextViewDescription = itemView.findViewById(R.id.textViewDescription);
             imageView = itemView.findViewById(R.id.image_for_row);
 
-            itemView.setOnClickListener(v -> {
-                int position = getAdapterPosition();
+        }
 
-                AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
-                v.setAnimation(buttonClick);
-
-                Intent intent = new Intent(v.getContext(), InfoProductActivity.class);
-                // v.getContext().startActivity(intent);
-            });
-
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view, getAdapterPosition());
         }
     }
 }
