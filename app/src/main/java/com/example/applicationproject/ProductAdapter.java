@@ -18,7 +18,6 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private final List<ProductData> mData;
     private final LayoutInflater mInflater;
-
     private RecyclerViewClickListener listener;
 
 
@@ -67,10 +66,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             myTextViewName = itemView.findViewById(R.id.textViewName);
             myTextViewDescription = itemView.findViewById(R.id.textViewDescription);
             imageView = itemView.findViewById(R.id.image_for_row);
-
-
+            itemView.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View view) {
             listener.onClick(view, getAdapterPosition());

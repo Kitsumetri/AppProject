@@ -2,14 +2,20 @@ package com.example.applicationproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
+    private ArrayList<ProductData> productList;
+    private RecyclerView recyclerView;
     private ProductAdapter.RecyclerViewClickListener listener;
 
     @Override
@@ -30,20 +36,27 @@ public class MainActivity extends AppCompatActivity {
         RetrieveData retrieveData = new RetrieveData();
 
         retrieveData.Start(value -> {
-            RecyclerView recyclerView = findViewById(R.id.rvProduct);
+            recyclerView = findViewById(R.id.rvProduct);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            setOnClickListener();
-            ProductAdapter adapter = new ProductAdapter(this, value, listener);
-            recyclerView.setAdapter(adapter);
+            productList = value;
+            setAdapter(productList);
         });
     }
 
-    private void setOnClickListener() {
-        listener = (v, position) -> {
+    private void setAdapter(ArrayList<ProductData> value) {
+        setOnClickListener();
+        ProductAdapter adapter = new ProductAdapter(getApplicationContext(), value, listener);
+        recyclerView.setAdapter(adapter);
+    }
 
-            setContentView(R.layout.info_frame);
-            Intent intent = new Intent(getApplicationContext(), InfoProductActivity.class);
-            startActivity(intent);
+    private void setOnClickListener() {
+        listener = new ProductAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Log.i("checkClick", "check");
+                Intent intent = new Intent(getApplicationContext(), InfoProductActivity.class);
+                startActivity(intent);
+            }
         };
     }
 
