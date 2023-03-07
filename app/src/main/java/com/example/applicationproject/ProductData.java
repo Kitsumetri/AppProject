@@ -1,9 +1,9 @@
 package com.example.applicationproject;
 
 public class ProductData {
-    private  String id, hashId, name, description, itemSourceLink, category;
-    private  float price, rating;
-    private  boolean isInStore;
+    private String id, hashId, name, description, itemSourceLink, category;
+    private float price, rating;
+    private boolean isInStore;
 
     public ProductData(String id, String hashId, String name, String description, float price, String itemSourceLink,  float rating,  boolean isInStore, String category) {
         this.id = id;

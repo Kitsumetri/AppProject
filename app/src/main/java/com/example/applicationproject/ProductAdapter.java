@@ -1,10 +1,12 @@
 package com.example.applicationproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
+
+
+
         return new ViewHolder(view);
     }
 
@@ -37,13 +42,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         Picasso.get().load(productData.getItemSourceLink()).into(holder.imageView);
         holder.myTextViewName.setText(productData.getName());
-        holder.myTextViewDescription.setText(String.valueOf(productData.getPrice() + " рублей"));
-        if(position % 2 == 1) {
+        holder.myTextViewDescription.setText(String.valueOf(productData.getPrice()) + " рублей");
+
+        if (position % 2 == 1)
             holder.itemView.setBackgroundColor(Color.parseColor("#CDBFA8"));
-        }
-        else {
-            holder.itemView.setBackgroundColor(Color.parseColor("#D3A092"));
-        }
+        else
+            holder.itemView.setBackgroundColor(Color.parseColor("#E9E4C6"));
     }
 
     @Override
@@ -60,6 +64,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             myTextViewName = itemView.findViewById(R.id.textViewName);
             myTextViewDescription = itemView.findViewById(R.id.textViewDescription);
             imageView = itemView.findViewById(R.id.image_for_row);
+
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+
+                AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+                v.setAnimation(buttonClick);
+
+                Intent intent = new Intent(v.getContext(), InfoProductActivity.class);
+                // v.getContext().startActivity(intent);
+            });
 
         }
     }

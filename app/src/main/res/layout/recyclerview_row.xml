@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:fontFamily="@font/main_font"
         app:layout_constraintStart_toEndOf="@+id/image_for_row"
         app:layout_constraintTop_toTopOf="@+id/image_for_row"
         />
@@ -17,6 +18,7 @@
     <TextView
         android:id="@+id/textViewDescription"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/main_font"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/image_for_row"

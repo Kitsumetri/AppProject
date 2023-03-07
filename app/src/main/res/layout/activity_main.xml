@@ -11,25 +11,25 @@
         android:orientation="horizontal"
         android:background="#8F8A94">
 
-        <ImageView
-            android:id="@+id/imageBack"
+        <ImageButton
+            android:id="@+id/back_button"
             android:layout_width="45dp"
             android:layout_height="35dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/description"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:paddingStart="15dp"
+            android:scaleType="fitCenter"
             android:src="@drawable/icon_back" />
 
-        <ImageView
-            android:id="@+id/imageSettings"
+        <ImageButton
+            android:scaleType="fitCenter"
+            android:id="@+id/settings_button"
             android:src="@drawable/icon_settings"
             android:layout_width="45dp"
             android:layout_height="35dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:paddingEnd="15dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/description"/>
 

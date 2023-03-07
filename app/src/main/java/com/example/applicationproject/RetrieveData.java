@@ -9,7 +9,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
 public class RetrieveData {
 
     public interface ProductListCallback { void onCallback(ArrayList<ProductData> value); }
@@ -20,12 +19,16 @@ public class RetrieveData {
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance(url).getReference();
 
+        String[] product_names = {"maxidom-laminat", "maxidom_oboi"};
+
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot childSnapshot: dataSnapshot.child("maxidom-laminat").getChildren()) {
-                    ProductData value = childSnapshot.getValue(ProductData.class);
-                    productData.add(value);
+                for (String name : product_names) {
+                    for (DataSnapshot childSnapshot : dataSnapshot.child(name).getChildren()) {
+                        ProductData value = childSnapshot.getValue(ProductData.class);
+                        productData.add(value);
+                    }
                 }
                 Callback.onCallback(productData);
             }
