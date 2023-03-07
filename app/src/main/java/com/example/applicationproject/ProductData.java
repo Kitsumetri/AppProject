@@ -3,9 +3,9 @@ package com.example.applicationproject;
 public class ProductData {
     private String id, hashId, name, description, itemSourceLink, category;
     private float price, rating;
-    private boolean isInStore;
+    private String isInStore;
 
-    public ProductData(String id, String hashId, String name, String description, float price, String itemSourceLink,  float rating,  boolean isInStore, String category) {
+    public ProductData(String id, String hashId, String name, String description, float price, String itemSourceLink,  float rating,  String isInStore, String category) {
         this.id = id;
         this.hashId = hashId;
         this.name = name;
@@ -43,7 +43,7 @@ public class ProductData {
     public void setRating(float rating) {
         this.rating = rating;
     }
-    public void setInStore(boolean inStore) {
+    public void setInStore(String inStore) {
         isInStore = inStore;
     }
 
@@ -57,5 +57,5 @@ public class ProductData {
     public String getCategory() { return category; }
     public float getPrice() { return price; }
     public float getRating() { return rating; }
-    public boolean isInStore() { return isInStore; }
+    public String isInStore() { return isInStore; }
 }

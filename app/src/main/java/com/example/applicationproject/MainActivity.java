@@ -2,7 +2,6 @@ package com.example.applicationproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,12 +39,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setOnClickListener() {
-        listener = new ProductAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), InfoProductActivity.class);
-                startActivity(intent);
-            }
+        listener = (v, position) -> {
+
+            setContentView(R.layout.info_frame);
+            Intent intent = new Intent(getApplicationContext(), InfoProductActivity.class);
+            startActivity(intent);
         };
     }
 
