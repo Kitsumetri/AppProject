@@ -18,7 +18,7 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private final List<ProductData> mData;
     private final LayoutInflater mInflater;
-    private RecyclerViewClickListener listener;
+    private final RecyclerViewClickListener listener;
 
 
     ProductAdapter(Context context, @NonNull List<ProductData> data, RecyclerViewClickListener listener) {
@@ -40,7 +40,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         Picasso.get().load(productData.getItemSourceLink()).into(holder.imageView);
         holder.myTextViewName.setText(productData.getName());
-        holder.myTextViewDescription.setText(String.valueOf(productData.getPrice()) + " рублей");
+
+        String price = productData.getPrice() + " рублей";
+        holder.myTextViewDescription.setText(price);
 
         if (position % 2 == 1)
             holder.itemView.setBackgroundColor(Color.parseColor("#CDBFA8"));
@@ -53,7 +55,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return mData.size();
     }
 
-    public interface RecyclerViewClickListener{
+    public interface RecyclerViewClickListener {
         void onClick(View v, int position);
     }
 

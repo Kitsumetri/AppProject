@@ -2,8 +2,7 @@ package com.example.applicationproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class RecycleViewActivity extends AppCompatActivity {
 
     private ArrayList<ProductData> productList;
     private RecyclerView recyclerView;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton back_button = findViewById(R.id.back_button);
         back_button.setOnClickListener(v -> {
-            finish();
+            finishAffinity();
             System.exit(0);
         });
 
@@ -50,13 +49,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setOnClickListener() {
-        listener = new ProductAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Log.i("checkClick", "check");
-                Intent intent = new Intent(getApplicationContext(), InfoProductActivity.class);
-                startActivity(intent);
-            }
+        listener = (v, position) -> {
+            AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
+            animation.setDuration(100);
+            v.setAlpha(1f);
+            v.startAnimation(animation);
+
+            Intent intent = new Intent(getApplicationContext(), InfoProductActivity.class);
+            startActivity(intent);
         };
     }
 
