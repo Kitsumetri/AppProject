@@ -27,8 +27,14 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
         </activity>
-        <activity android:name=".InfoProductActivity"/>
+
+        <activity
+            android:name=".InfoProductActivity"
+            android:theme="@style/Theme.ApplicationProject.NoActionBar">
+        </activity>
+
     </application>
 
 </manifest>

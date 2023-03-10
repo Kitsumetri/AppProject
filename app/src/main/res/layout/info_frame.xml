@@ -12,8 +12,43 @@
          android:background="#E9E4C6"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/menuLayout"
          app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+     <RelativeLayout
+         android:id="@+id/menuLayout"
+         android:layout_width="match_parent"
+         android:layout_height="60dp"
+         android:orientation="horizontal"
+         android:background="#8F8A94"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent">
+
+          <ImageButton
+              android:id="@+id/back_button"
+              android:layout_width="45dp"
+              android:layout_height="35dp"
+              android:background="@android:color/transparent"
+              android:contentDescription="@string/description"
+              android:layout_alignParentStart="true"
+              android:layout_centerVertical="true"
+              android:scaleType="fitCenter"
+              android:src="@drawable/icon_back" />
+
+          <ImageButton
+              android:scaleType="fitCenter"
+              android:id="@+id/settings_button"
+              android:src="@drawable/icon_settings"
+              android:layout_width="45dp"
+              android:layout_height="35dp"
+              android:layout_alignParentEnd="true"
+              android:layout_centerVertical="true"
+              android:background="@android:color/transparent"
+              android:contentDescription="@string/description"/>
+
+     </RelativeLayout>
 
      <TextView
          android:id="@+id/object_name"
@@ -28,7 +63,8 @@
          android:layout_marginStart="30dp"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent" />
+         app:layout_constraintTop_toBottomOf="@+id/menuLayout"
+         />
 
      <ImageView
          android:id="@+id/image"
@@ -40,16 +76,17 @@
          app:layout_constraintStart_toStartOf="parent"
          app:layout_constraintTop_toBottomOf="@+id/object_name" />
 
-     <TextView
+     <RatingBar
          android:id="@+id/object_rating"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_marginTop="45dp"
          android:layout_marginEnd="30dp"
          android:layout_marginStart="30dp"
-         android:fontFamily="@font/main_font"
-         android:text="@string/rating"
-         android:textSize="80sp"
+         android:scaleX=".8"
+         android:scaleY=".8"
+         android:numStars="5"
+         android:stepSize="0.1"
          android:textColor="#E4B460"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintStart_toEndOf="@+id/image"
@@ -84,14 +121,19 @@
          app:layout_constraintTop_toBottomOf="@+id/object_category" />
 
      <TextView
+         android:ellipsize="marquee"
+         android:focusable="false"
+         android:scrollbars="vertical"
+         android:marqueeRepeatLimit="marquee_forever"
+         android:singleLine="false"
          android:id="@+id/object_description"
          android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
+         android:layout_height="300dp"
          android:layout_marginTop="43dp"
          android:layout_marginEnd="24dp"
          android:layout_marginStart="24dp"
          android:fontFamily="@font/main_font"
-         android:text="@string/description"
+         android:text="@string/lorem"
          android:textSize="25sp"
          android:textColor="#7F4E40"
          app:layout_constraintEnd_toEndOf="parent"
@@ -108,19 +150,7 @@
          android:textSize="25sp"
          android:textColor="#7F4E40"
          app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintBottom_toTopOf="@+id/back_button" />
-
-
-     <ImageButton
-         android:id="@+id/back_button"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginBottom="20dp"
-         android:background="@drawable/baseline_clear_24"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintBottom_toBottomOf="parent" />
-
-
+         app:layout_constraintStart_toEndOf="@id/image"
+         app:layout_constraintTop_toBottomOf="@+id/object_cost"
+         app:layout_constraintBottom_toTopOf="@+id/object_description" />
 </androidx.constraintlayout.widget.ConstraintLayout>

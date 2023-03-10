@@ -8,22 +8,26 @@
 
     <TextView
         android:id="@+id/textViewName"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:fontFamily="@font/main_font"
+        android:scrollbars = "horizontal"
         app:layout_constraintStart_toEndOf="@+id/image_for_row"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image_for_row"
         />
 
     <TextView
-        android:id="@+id/textViewDescription"
+        android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
-        android:fontFamily="@font/main_font"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:scrollbars = "vertical"
+        android:fontFamily="@font/main_font"
         app:layout_constraintBottom_toBottomOf="@+id/image_for_row"
         app:layout_constraintStart_toEndOf="@+id/image_for_row"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewName"
         />
 
@@ -42,7 +46,6 @@
         android:layout_height="181dp"
         android:background="#00000000"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/textViewName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
 

@@ -2,6 +2,7 @@ package com.example.applicationproject;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private final List<ProductData> mData;
@@ -40,9 +42,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         Picasso.get().load(productData.getItemSourceLink()).into(holder.imageView);
         holder.myTextViewName.setText(productData.getName());
+        holder.myTextViewName.setMovementMethod(new ScrollingMovementMethod());
 
         String price = productData.getPrice() + " рублей";
-        holder.myTextViewDescription.setText(price);
+        holder.myTextViewPrice.setText(price);
+        holder.myTextViewPrice.setMovementMethod(new ScrollingMovementMethod());
 
         if (position % 2 == 1)
             holder.itemView.setBackgroundColor(Color.parseColor("#CDBFA8"));
@@ -56,23 +60,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public interface RecyclerViewClickListener {
-        void onClick(View v, int position);
+        void onClick(View v, ProductData productData);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView myTextViewName;
-        TextView myTextViewDescription;
+        TextView myTextViewPrice;
+
         ImageView imageView;
         ViewHolder(View itemView) {
             super(itemView);
             myTextViewName = itemView.findViewById(R.id.textViewName);
-            myTextViewDescription = itemView.findViewById(R.id.textViewDescription);
+            myTextViewPrice = itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.image_for_row);
             itemView.setOnClickListener(this);
         }
         @Override
         public void onClick(View view) {
-            listener.onClick(view, getAdapterPosition());
+            listener.onClick(view, mData.get(getAdapterPosition()));
         }
     }
 }

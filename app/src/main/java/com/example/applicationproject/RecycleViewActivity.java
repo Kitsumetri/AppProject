@@ -2,7 +2,9 @@ package com.example.applicationproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
+import android.view.autofill.AutofillValue;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,13 +51,21 @@ public class RecycleViewActivity extends AppCompatActivity {
     }
 
     private void setOnClickListener() {
-        listener = (v, position) -> {
+        listener = (v, productData) -> {
             AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
             animation.setDuration(100);
             v.setAlpha(1f);
             v.startAnimation(animation);
 
             Intent intent = new Intent(getApplicationContext(), InfoProductActivity.class);
+
+            intent.putExtra("imageUrl", productData.getItemSourceLink());
+            intent.putExtra("productName", productData.getName());
+            intent.putExtra("productDescription", productData.getDescription());
+            intent.putExtra("inStore", productData.isInStore());
+            intent.putExtra("productPrice", productData.getPrice());
+            intent.putExtra("Rating", productData.getRating());
+
             startActivity(intent);
         };
     }
