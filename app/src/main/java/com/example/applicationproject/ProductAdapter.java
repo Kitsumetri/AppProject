@@ -82,8 +82,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         String price = productData.getPrice() + " рублей";
         holder.myTextViewPrice.setText(price);
 
-        if (position % 2 == 1)
-            holder.itemView.setBackgroundColor(Color.parseColor("#CDBFA8"));
+        if (position % 2 == 0)
+            holder.itemView.setBackgroundColor(Color.parseColor("#DACCBD"));
         else
             holder.itemView.setBackgroundColor(Color.parseColor("#E9E4C6"));
     }

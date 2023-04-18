@@ -50,7 +50,6 @@ public class RecycleViewActivity extends AppCompatActivity {
     private void setAdapter(ArrayList<ProductData> value) {
         setOnClickListener();
         ProductAdapter adapter = new ProductAdapter(getApplicationContext(), value, listener);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) { return false; }
@@ -61,7 +60,6 @@ public class RecycleViewActivity extends AppCompatActivity {
                 return false;
             }
         });
-
         recyclerView.setAdapter(adapter);
     }
 
