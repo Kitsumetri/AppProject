@@ -5,9 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -27,47 +25,38 @@ public class InfoProductActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         ImageView imageView = findViewById(R.id.image);
-        final Drawable[] drawable = new Drawable[1];
-        Picasso.get().load(intent.getStringExtra("imageUrl")).fit().into(imageView , new Callback() {
-            @Override
-            public void onSuccess() {
-                drawable[0] = imageView.getDrawable();
-                if (drawable[0] != null) {
+        Picasso.get().load(intent.getStringExtra("imageUrl")).fit().into(imageView,
+                new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Bitmap originalBitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                        Bitmap newBitmap = Bitmap.createBitmap(originalBitmap.getWidth(),
+                                originalBitmap.getHeight(),
+                                Bitmap.Config.ARGB_8888);
 
-                    Bitmap originalBitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                        Canvas canvas = new Canvas(newBitmap);
+                        canvas.drawBitmap(originalBitmap, 0, 0, null);
 
+                        for (int x = 0; x < newBitmap.getWidth(); x++)
+                            for (int y = 0; y < newBitmap.getHeight(); y++) {
+                                int pixel = newBitmap.getPixel(x, y);
 
-                    Bitmap newBitmap = Bitmap.createBitmap(originalBitmap.getWidth(),
-                            originalBitmap.getHeight(),
-                            Bitmap.Config.ARGB_8888);
-
-                    Canvas canvas = new Canvas(newBitmap);
-
-                    canvas.drawBitmap(originalBitmap, 0, 0, null);
-
-                    for (int x = 0; x < newBitmap.getWidth(); x++) {
-                        for (int y = 0; y < newBitmap.getHeight(); y++) {
-                            int pixel = newBitmap.getPixel(x, y);
-
-                            if (Color.red(pixel) >= 245 &&
-                                    Color.green(pixel) >= 245 &&
-                                    Color.blue(pixel) >= 245)
-                                newBitmap.setPixel(x, y, Color.TRANSPARENT);
-                        }
+                                if (Color.red(pixel) >= 245 &&
+                                        Color.green(pixel) >= 245 &&
+                                        Color.blue(pixel) >= 245)
+                                    newBitmap.setPixel(x, y, Color.TRANSPARENT);
+                            }
+                        imageView.setImageBitmap(newBitmap);
                     }
-                    imageView.setImageBitmap(newBitmap);
-                }
-            }
-            @Override
-            public void onError(Exception e) {}
-        });
+                    @Override
+                    public void onError(Exception e) {}
+                });
 
         TextView textViewText = findViewById(R.id.object_name);
         textViewText.setText(intent.getStringExtra("productName"));
 
         TextView textViewDescription = findViewById(R.id.object_description);
         textViewDescription.setText( intent.getStringExtra("productDescription"));
-        textViewDescription.setMovementMethod(new ScrollingMovementMethod());
         textViewDescription.setSelected(true);
 
         TextView textViewPrice = findViewById(R.id.object_cost);
@@ -76,9 +65,9 @@ public class InfoProductActivity extends AppCompatActivity {
         RatingBar ratingBar = findViewById(R.id.object_rating);
         ratingBar.setRating(getIntent().getExtras().getFloat("Rating"));
 
-        ImageButton img = findViewById(R.id.back_button);
+        ImageButton img_back = findViewById(R.id.back_button);
 
-        img.setOnClickListener(v -> {
+        img_back.setOnClickListener(v -> {
             Intent intent_back = new Intent(getApplicationContext(), RecycleViewActivity.class);
             startActivity(intent_back);
         });

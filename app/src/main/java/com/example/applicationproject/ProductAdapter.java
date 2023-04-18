@@ -1,11 +1,11 @@
 package com.example.applicationproject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +26,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     private final ArrayList<ProductData> mData;
     private final LayoutInflater mInflater;
     private final RecyclerViewClickListener listener;
-
     private final ItemFilter itemFilter;
     private ArrayList<ProductData> filteredItemList;
-
 
 
     ProductAdapter(Context context, @NonNull ArrayList<ProductData> data, RecyclerViewClickListener listener) {
@@ -50,40 +48,33 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProductData productData = filteredItemList.get(position);
-        final Drawable[] drawable = new Drawable[1];
-        Picasso.get().load(productData.getItemSourceLink()).into(holder.imageView , new Callback() {
-            @Override
-            public void onSuccess() {
-                drawable[0] = holder.imageView.getDrawable();
-                if (drawable[0] != null) {
-
-                    Bitmap originalBitmap = ((BitmapDrawable) holder.imageView.getDrawable()).getBitmap();
+        Picasso.get().load(productData.getItemSourceLink()).into(holder.imageView,
+                new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Bitmap originalBitmap = ((BitmapDrawable) holder.imageView.getDrawable()).getBitmap();
 
 
-                    Bitmap newBitmap = Bitmap.createBitmap(originalBitmap.getWidth(),
-                                                            originalBitmap.getHeight(),
-                                                            Bitmap.Config.ARGB_8888);
+                        Bitmap newBitmap = Bitmap.createBitmap(originalBitmap.getWidth(),
+                                                                    originalBitmap.getHeight(),
+                                                                    Bitmap.Config.ARGB_8888);
+                        Canvas canvas = new Canvas(newBitmap);
+                        canvas.drawBitmap(originalBitmap, 0, 0, null);
 
-                    Canvas canvas = new Canvas(newBitmap);
+                        for (int x = 0; x < newBitmap.getWidth(); x++)
+                            for (int y = 0; y < newBitmap.getHeight(); y++) {
+                                int pixel = newBitmap.getPixel(x, y);
 
-                    canvas.drawBitmap(originalBitmap, 0, 0, null);
-
-                    for (int x = 0; x < newBitmap.getWidth(); x++) {
-                        for (int y = 0; y < newBitmap.getHeight(); y++) {
-                            int pixel = newBitmap.getPixel(x, y);
-
-                            if (Color.red(pixel) >= 245 &&
-                                    Color.green(pixel) >= 245 &&
-                                    Color.blue(pixel) >= 245)
-                                newBitmap.setPixel(x, y, Color.TRANSPARENT);
-                        }
+                                if (Color.red(pixel) >= 245 &&
+                                        Color.green(pixel) >= 245 &&
+                                        Color.blue(pixel) >= 245)
+                                        newBitmap.setPixel(x, y, Color.TRANSPARENT);
+                                }
+                        holder.imageView.setImageBitmap(newBitmap);
                     }
-                    holder.imageView.setImageBitmap(newBitmap);
-                }
-            }
-            @Override
-            public void onError(Exception e) {}
-        });
+                    @Override
+                    public void onError(Exception e) {}
+                });
 
 
         holder.myTextViewName.setText(productData.getName());
@@ -98,9 +89,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     @Override
-    public int getItemCount() {
-        return filteredItemList.size();
-    }
+    public int getItemCount() { return filteredItemList.size(); }
 
     @Override
     public Filter getFilter() { return itemFilter; }
@@ -129,21 +118,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
             ArrayList<ProductData> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0) {
+            if (constraint == null || constraint.length() == 0)
                 filteredList.addAll(mData);
-            } else {
+            else {
                 String filterPattern = constraint.toString().trim();
-                for (ProductData item : mData) {
-                    if (item.getName().contains(filterPattern)) {
+                for (ProductData item : mData)
+                    if (item.getName().contains(filterPattern))
                         filteredList.add(item);
-                    }
-                }
             }
             results.values = filteredList;
             results.count = filteredList.size();
             return results;
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filteredItemList = (ArrayList<ProductData>) results.values;
