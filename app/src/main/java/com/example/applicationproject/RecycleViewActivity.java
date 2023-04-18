@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 public class RecycleViewActivity extends AppCompatActivity {
 
     private ArrayList<ProductData> productList;
+
+    private SearchView searchView;
     private RecyclerView recyclerView;
     private ProductAdapter.RecyclerViewClickListener listener;
 
@@ -22,6 +25,8 @@ public class RecycleViewActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        searchView = findViewById(R.id.search_view);
 
         ImageButton back_button = findViewById(R.id.back_button);
         back_button.setOnClickListener(v -> {
@@ -45,6 +50,18 @@ public class RecycleViewActivity extends AppCompatActivity {
     private void setAdapter(ArrayList<ProductData> value) {
         setOnClickListener();
         ProductAdapter adapter = new ProductAdapter(getApplicationContext(), value, listener);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) { return false; }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         recyclerView.setAdapter(adapter);
     }
 

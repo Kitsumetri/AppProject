@@ -1,31 +1,43 @@
 package com.example.applicationproject;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
-import android.text.method.ScrollingMovementMethod;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-    private final List<ProductData> mData;
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> implements Filterable {
+    private final ArrayList<ProductData> mData;
     private final LayoutInflater mInflater;
     private final RecyclerViewClickListener listener;
 
+    private final ItemFilter itemFilter;
+    private ArrayList<ProductData> filteredItemList;
 
-    ProductAdapter(Context context, @NonNull List<ProductData> data, RecyclerViewClickListener listener) {
+
+
+    ProductAdapter(Context context, @NonNull ArrayList<ProductData> data, RecyclerViewClickListener listener) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.listener = listener;
+        this.filteredItemList = mData;
+        this.itemFilter = new ItemFilter();
     }
 
     @NonNull
@@ -37,15 +49,47 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ProductData productData = mData.get(position);
+        ProductData productData = filteredItemList.get(position);
+        final Drawable[] drawable = new Drawable[1];
+        Picasso.get().load(productData.getItemSourceLink()).into(holder.imageView , new Callback() {
+            @Override
+            public void onSuccess() {
+                drawable[0] = holder.imageView.getDrawable();
+                if (drawable[0] != null) {
 
-        Picasso.get().load(productData.getItemSourceLink()).into(holder.imageView);
+                    Bitmap originalBitmap = ((BitmapDrawable) holder.imageView.getDrawable()).getBitmap();
+
+
+                    Bitmap newBitmap = Bitmap.createBitmap(originalBitmap.getWidth(),
+                                                            originalBitmap.getHeight(),
+                                                            Bitmap.Config.ARGB_8888);
+
+                    Canvas canvas = new Canvas(newBitmap);
+
+                    canvas.drawBitmap(originalBitmap, 0, 0, null);
+
+                    for (int x = 0; x < newBitmap.getWidth(); x++) {
+                        for (int y = 0; y < newBitmap.getHeight(); y++) {
+                            int pixel = newBitmap.getPixel(x, y);
+
+                            if (Color.red(pixel) >= 245 &&
+                                    Color.green(pixel) >= 245 &&
+                                    Color.blue(pixel) >= 245)
+                                newBitmap.setPixel(x, y, Color.TRANSPARENT);
+                        }
+                    }
+                    holder.imageView.setImageBitmap(newBitmap);
+                }
+            }
+            @Override
+            public void onError(Exception e) {}
+        });
+
+
         holder.myTextViewName.setText(productData.getName());
-        holder.myTextViewName.setMovementMethod(new ScrollingMovementMethod());
 
         String price = productData.getPrice() + " рублей";
         holder.myTextViewPrice.setText(price);
-        holder.myTextViewPrice.setMovementMethod(new ScrollingMovementMethod());
 
         if (position % 2 == 1)
             holder.itemView.setBackgroundColor(Color.parseColor("#CDBFA8"));
@@ -55,12 +99,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return filteredItemList.size();
     }
 
-    public interface RecyclerViewClickListener {
-        void onClick(View v, ProductData productData);
-    }
+    @Override
+    public Filter getFilter() { return itemFilter; }
+
+    public interface RecyclerViewClickListener { void onClick(View v, ProductData productData); }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView myTextViewName;
@@ -76,7 +121,33 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
         @Override
         public void onClick(View view) {
-            listener.onClick(view, mData.get(getAdapterPosition()));
+            listener.onClick(view, filteredItemList.get(getAdapterPosition()));
+        }
+    }
+    private class ItemFilter extends Filter {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+            ArrayList<ProductData> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(mData);
+            } else {
+                String filterPattern = constraint.toString().trim();
+                for (ProductData item : mData) {
+                    if (item.getName().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            results.values = filteredList;
+            results.count = filteredList.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            filteredItemList = (ArrayList<ProductData>) results.values;
+            notifyDataSetChanged();
         }
     }
 }

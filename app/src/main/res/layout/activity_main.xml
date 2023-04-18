@@ -9,7 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="#8F8A94">
+        android:background="#B8A48F">
+
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="221dp"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/settings_button"
+            android:layout_toEndOf="@+id/back_button" />
 
         <ImageButton
             android:id="@+id/back_button"
