@@ -31,9 +31,6 @@ public class InfoProductActivity extends AppCompatActivity {
         textViewDescription.setMovementMethod(new ScrollingMovementMethod());
         textViewDescription.setSelected(true);
 
-        TextView textViewInStore = findViewById(R.id.object_in_store);
-        textViewInStore.setText(intent.getStringExtra("inStore"));
-
         TextView textViewPrice = findViewById(R.id.object_cost);
         textViewPrice.setText(intent.getStringExtra("productPrice"));
 

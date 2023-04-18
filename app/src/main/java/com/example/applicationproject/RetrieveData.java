@@ -14,7 +14,7 @@ public class RetrieveData {
     public interface ProductListCallback { void onCallback(ArrayList<ProductData> value); }
 
     public void Start(final ProductListCallback Callback) {
-        String url =  "https://hse-project-ee9a9-default-rtdb.europe-west1.firebasedatabase.app";
+        String url = "https://hse-project-ee9a9-default-rtdb.europe-west1.firebasedatabase.app";
         ArrayList<ProductData> productData = new ArrayList<>();
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance(url).getReference();

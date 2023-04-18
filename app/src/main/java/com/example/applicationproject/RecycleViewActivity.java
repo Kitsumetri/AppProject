@@ -2,9 +2,7 @@ package com.example.applicationproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.AlphaAnimation;
-import android.view.autofill.AutofillValue;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,5 +67,4 @@ public class RecycleViewActivity extends AppCompatActivity {
             startActivity(intent);
         };
     }
-
 }
