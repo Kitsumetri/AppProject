@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        android:background="#B8A48F">
+        android:background="@drawable/backtexture">
 
         <SearchView
             android:id="@+id/search_view"

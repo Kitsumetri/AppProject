@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
+        View view = mInflater.inflate(R.layout.recyclerview_tile, parent, false);
         return new ViewHolder(view);
     }
 
@@ -82,10 +83,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         String price = productData.getPrice() + " рублей";
         holder.myTextViewPrice.setText(price);
 
-        if (position % 2 == 0)
-            holder.itemView.setBackgroundColor(Color.parseColor("#DACCBD"));
+        if ((position % 4 == 1)||(position % 4 == 2))
+            holder.itemView.setBackgroundResource(R.drawable.backtexture);
         else
-            holder.itemView.setBackgroundColor(Color.parseColor("#E9E4C6"));
+            holder.itemView.setBackgroundResource(R.drawable.backtexture2);
     }
 
     @Override

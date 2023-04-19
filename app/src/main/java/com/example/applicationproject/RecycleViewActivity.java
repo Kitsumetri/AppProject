@@ -7,12 +7,14 @@ import android.widget.ImageButton;
 import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class RecycleViewActivity extends AppCompatActivity {
+
 
     private ArrayList<ProductData> productList;
 
@@ -41,7 +43,10 @@ public class RecycleViewActivity extends AppCompatActivity {
 
         retrieveData.Start(value -> {
             recyclerView = findViewById(R.id.rvProduct);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            int numberOfColumns = 2;
+            recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
+//            new GridLayoutManager(this, numberOfColumns)
+//            new LinearLayoutManager(this)
             productList = value;
             setAdapter(productList);
         });
