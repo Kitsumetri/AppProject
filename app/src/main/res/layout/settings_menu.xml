@@ -7,70 +7,48 @@
     android:color="#E4D5BE">
 
 
-     <LinearLayout
+     <RelativeLayout
+         android:id="@+id/menuLayout"
          android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:background="#E9E4C6"
+         android:layout_height="45dp"
+         android:orientation="horizontal"
+         android:background="@drawable/backtexture"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent">
+
+          <ImageButton
+              android:id="@+id/back_button"
+              android:layout_width="48dp"
+              android:layout_height="48dp"
+              android:padding="10dp"
+              android:background="@android:color/transparent"
+              android:contentDescription="@string/description"
+              android:layout_alignParentStart="true"
+              android:layout_centerVertical="true"
+              android:scaleType="fitCenter"
+              android:src="@drawable/icon_back" />
+     </RelativeLayout>
+
+     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:background="@drawable/backtexture2"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/menuLayout"
          app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent" />
+         android:orientation="vertical">
 
-     <TextView
-         android:id="@+id/set1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="100dp"
-         android:fontFamily="@font/main_font"
-         android:text="Настройка1"
-         android:textSize="50sp"
-         android:textColor="#7F4E40"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent"
-         app:layout_constraintBaseline_toBottomOf="parent"/>
+          <!-- Settings -->
+          <ListView
+              android:id="@+id/settings_list"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"/>
 
-     <TextView
-         android:id="@+id/set2"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="90dp"
-         android:fontFamily="@font/main_font"
-         android:text="Настройка2"
-         android:textSize="50sp"
-         android:textColor="#7F4E40"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/set1"
-         app:layout_constraintBottom_toTopOf="@+id/set3"/>
+     </LinearLayout>
 
-     <TextView
-         android:id="@+id/set3"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="90dp"
-         android:fontFamily="@font/main_font"
-         android:text="Настройка3"
-         android:textSize="50sp"
-         android:textColor="#7F4E40"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/set2"
-         app:layout_constraintBottom_toTopOf="@+id/set4"/>
-
-     <TextView
-         android:id="@+id/set4"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:fontFamily="@font/main_font"
-         android:layout_marginTop="110dp"
-         android:text="Настройка4"
-         android:textSize="50sp"
-         android:textColor="#7F4E40"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/set3"
-         app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 

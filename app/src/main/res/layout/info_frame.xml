@@ -4,14 +4,14 @@
     android:id="@+id/item_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DACCBD">
+    android:background="@drawable/backtexture2">
 
     <RelativeLayout
         android:id="@+id/menuLayout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        android:background="#B8A48F"
+        android:background="@drawable/backtexture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -64,10 +64,14 @@
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/menuLayout">
 
-        <TextView
+        <ScrollView
             android:id="@+id/object_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:scrollbarStyle="insideInset"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="16dp"
             android:text="@string/item_name"
             android:textSize="18sp"
             android:textColor="@color/black"
@@ -97,29 +101,77 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
 
-            <RatingBar
-                android:id="@+id/object_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:progressTint="#B68640"
-                android:contentDescription="Rating"
-                android:numStars="5"
-                android:rating="4.5"
-                android:scaleX=".6"
-                android:scaleY=".6"
-                android:stepSize="0.5" />
-
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/item_other_attributes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="14sp"
-            android:layout_marginTop="8dp"/>
-
     </LinearLayout>
+
+    <RatingBar
+        android:id="@+id/object_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:progressTint="#B68640"
+        android:contentDescription="Rating"
+        android:numStars="5"
+        android:rating="4.5"
+        android:scaleX="1.6"
+        android:scaleY="1.6"
+        android:stepSize="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/item_info_container"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <TextView
+        android:id="@+id/item_other_attributes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/item_info_container"
+        app:layout_constraintTop_toBottomOf="@+id/object_rating" />
+
+    <TextView
+        android:id="@+id/item_other_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compare"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_info_container"
+        app:layout_constraintBottom_toTopOf="@+id/item_other_options_2"/>
+
+
+    <TextView
+        android:id="@+id/item_other_options_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Option 2"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_other_options"
+        app:layout_constraintBottom_toTopOf="@+id/item_other_options_3"/>
+
+    <TextView
+        android:id="@+id/item_other_options_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Option 3"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_other_options_2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

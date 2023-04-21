@@ -37,7 +37,10 @@ public class RecycleViewActivity extends AppCompatActivity {
         });
 
         ImageButton settings_button = findViewById(R.id.settings_button);
-        settings_button.setOnClickListener(v -> setContentView(R.layout.settings_menu));
+        settings_button.setOnClickListener(v -> {
+            Intent intent_settings = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(intent_settings);
+        });
 
         RetrieveData retrieveData = new RetrieveData();
 

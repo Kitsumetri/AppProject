@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,9 +55,13 @@ public class InfoProductActivity extends AppCompatActivity {
                     public void onError(Exception e) {}
                 });
 
-        TextView textViewText = findViewById(R.id.object_name);
-        textViewText.setText(intent.getStringExtra("productName"));
 
+        ScrollView textViewText = findViewById(R.id.object_name);
+        TextView tv = new TextView(this);
+        tv.setText(intent.getStringExtra("productName"));
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        tv.setTypeface(null, Typeface.BOLD);
+        textViewText.addView(tv);
         TextView textViewDescription = findViewById(R.id.object_description);
         textViewDescription.setText( intent.getStringExtra("productDescription"));
         textViewDescription.setSelected(true);
@@ -65,11 +72,18 @@ public class InfoProductActivity extends AppCompatActivity {
         RatingBar ratingBar = findViewById(R.id.object_rating);
         ratingBar.setRating(getIntent().getExtras().getFloat("Rating"));
 
+
         ImageButton img_back = findViewById(R.id.back_button);
 
         img_back.setOnClickListener(v -> {
             Intent intent_back = new Intent(getApplicationContext(), RecycleViewActivity.class);
             startActivity(intent_back);
+        });
+
+        ImageButton settings_button = findViewById(R.id.settings_button);
+        settings_button.setOnClickListener(v -> {
+            Intent intent_settings = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(intent_settings);
         });
 
     }
